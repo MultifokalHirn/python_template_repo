@@ -60,7 +60,7 @@ CMD ["python3", "-m", "project.app"]
 
 
 # run stage
-FROM python:3.11 AS app
+FROM python:3.11 AS runner
 
 # retrieve packages from build stage
 ENV PYTHONPATH=/project/pkgs
