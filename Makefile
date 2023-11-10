@@ -9,7 +9,9 @@ all: venv
 install: venv
 	$(VENV)/pip install --upgrade pip setuptools wheel
 	$(VENV)/pip install pdm
-	$(VENV)/python -m pdm install --dev
+	$(VENV)/pdm self update
+	$(VENV)/pdm lock
+	$(VENV)/pdm install --dev
 .PHONY: install
 
 ci: lint mypy test ## Run all checks (test, lint, typecheck)
@@ -17,12 +19,12 @@ ci: lint mypy test ## Run all checks (test, lint, typecheck)
 
 
 run: venv ## Run the application
-run: 
+run:
 	$(VENV)/python -m src.app.__main__:main
 .PHONY: run
 
 
-lint-fix: venv ## Run autopep8 and isort 
+lint-fix: venv ## Run autopep8 and isort
 lint-fix:
 	# Run auto-formatters...
 	$(VENV)/autopep8 src/**/*.py --in-place --recursive --aggressive --aggressive

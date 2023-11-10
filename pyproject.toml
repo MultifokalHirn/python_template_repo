@@ -20,29 +20,6 @@ dependencies = [
   "structlog",
 ]
 
-[tool.pdm.dev-dependencies]
-base = [
-  "pre-commit",
-  "commitizen",
-  "coverage"
-]
-lint = [
-  "autopep8",
-  "flake8",
-  "isort",
-  "mypy",
-  "mypy-extensions",
-]
-test = [
-  "pytest",
-  "pytest-cov",
-  "pytest-mypy",
-  "pytest-xdist",
-  "types-mock",
-]
-refactoring = [
-
-]
 [build-system]
 build-backend = "pdm.backend"
 requires = ["pdm-backend"]
@@ -97,4 +74,29 @@ version = "0.0.0"
 version_files = [
   "src/__version__.py",
   "pyproject.toml:version",
+]
+
+[tool.pdm.dev-dependencies]
+# pdm add -dG group package
+base = [
+  "pre-commit",
+  "commitizen",
+  "coverage"
+]
+lint = [
+  "autopep8",
+  "flake8",
+  "isort",
+  "mypy",
+  "mypy-extensions",
+]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+  "pytest-xdist",
+  "types-mock",
+]
+refactoring = [
+    "pyupgrade>=3.15.0",
 ]

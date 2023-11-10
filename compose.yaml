@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: ./src/app
+      target: builder
+    container_name: app_service
+    restart: never
+    # ports:
+    #   - '8000:8000'
