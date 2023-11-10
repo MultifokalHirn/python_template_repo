@@ -1,0 +1,32 @@
+[project]
+authors = [
+  {name = "Lennard Wolf", email = "private@info.com"},
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+description = "A small example package"
+dynamic = ["dependencies", "optional-dependencies"]
+name = "python_template_repo"
+readme = "README.md"
+requires-python = ">=3.8"
+version = "0.0.1"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/MultifokalHirn/python_template_repo/issues"
+"Homepage" = "https://github.com/MultifokalHirn/python_template_repo"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61.0"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies = {dev = {file = ["requirements-dev.txt"]}}
+
+[tool.poetry]
+name = "cartwatch"
+
+dependencies = {file = ["requirements.txt"]}

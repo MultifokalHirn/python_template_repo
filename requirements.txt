@@ -1,0 +1,11 @@
+# Compatible Python versions
+python = ">=3.8"
+
+pydantic
+ruamel.yaml
+termcolor
+
+typing-extensions
+types-requests
+types-mock
+types-pyyaml

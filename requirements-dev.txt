@@ -1,0 +1,14 @@
+pre-commit
+commitizen
+
+autopep8
+flake8
+mypy
+mypy-extensions
+
+pytest
+pytest-cov
+pytest-mypy
+pytest-xdist
+
+devtools
