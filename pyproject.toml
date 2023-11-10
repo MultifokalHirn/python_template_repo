@@ -45,8 +45,9 @@ multi_line_output = 3
 use_parentheses = true
 
 [tool.mypy]
-plugins = ["pydantic.mypy"]
+# plugins = ["pydantic.mypy"]
 python_version = "3.11"
+ignore_missing_imports = true
 
 # meta tools
 

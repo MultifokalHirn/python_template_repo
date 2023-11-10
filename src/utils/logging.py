@@ -52,13 +52,15 @@ def set_logger_level(
         # ... in the entry point ...
         set_logger_level(logger=LOG, level="DEBUG")
     """
-    # NOTE: level is not further refined with a Literal of allowed strings due to the dynamic nature of logging levels.
+    # NOTE: level is not further refined with a Literal of allowed strings due
+    # to the dynamic nature of logging levels.
     clean_level = level.upper()
     numeric_level = getattr(logging, clean_level)
     logger.setLevel(numeric_level)
     logger.info(
-        "Log level changed", new_level=clean_level, new_level_numeric=numeric_level
-    )
+        "Log level changed",
+        new_level=clean_level,
+        new_level_numeric=numeric_level)
 
 
 def _configure_logger_handlers() -> logging.StreamHandler:  # pragma: no cover

@@ -20,7 +20,7 @@ ci: lint mypy test ## Run all checks (test, lint, typecheck)
 
 run: venv ## Run the application
 run:
-	$(VENV)/python -m src.app.__main__:main
+	$(VENV)/python -m app
 .PHONY: run
 
 
@@ -28,7 +28,7 @@ lint-fix: venv ## Run autopep8 and isort
 lint-fix:
 	# Run auto-formatters...
 	$(VENV)/autopep8 src/**/*.py --in-place --recursive --aggressive --aggressive
-	$(VENV)/isort src/**/*.py --recursive
+	$(VENV)/isort src/**/*.py
 .PHONY: lint-fix
 
 lint: lint-fix ## Runs flake8 on src, exit if critical rules are broken
