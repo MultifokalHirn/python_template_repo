@@ -1,6 +1,7 @@
 <!-- omit in toc -->
 # Python Project Template
 
+<div align="center">
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm-project.org)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -13,6 +14,7 @@
 [![pipeline status](https://gitlab.com/MultifokalHirn/python_template_repo/badges/main/pipeline.svg?ignore_skipped=true)](https://gitlab.com/MultifokalHirn/python_template_repo/-/commits/main)
 [![Latest Release](https://gitlab.com/MultifokalHirn/python_template_repo/-/badges/release.svg)](https://gitlab.com/MultifokalHirn/python_template_repo/-/releases)
 
+</div>
 My personal template for a python project containing everything needed to start developing
 
 <!-- omit in toc -->
@@ -28,7 +30,10 @@ My personal template for a python project containing everything needed to start 
 <!-- omit in toc -->
 ## Table of Contents
 
+
 ## Contributing
+pdm lock && pdm install
+
 
 ### Commit Message Conventions
 
@@ -43,3 +48,7 @@ Please install the hooks like so:
 ``` bash
 pre-commit install && pre-commit install --hook-type commit-msg
 ```
+
+## License
+
+This project is open sourced under MIT license, see the [LICENSE](LICENSE) file for more details.
