@@ -5,7 +5,7 @@
 groups = ["default", "base", "doc", "lint", "test"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:7b8ed18caa5ac29fb198a104f4c0dac5c051f428c196413443eb4484ae3bdc02"
+content_hash = "sha256:6def7e7363a7d5355a78374627b1548de28dfe0bdefcdaee02439dabf2c5c1a3"
 
 [[package]]
 name = "annotated-types"
@@ -426,6 +426,16 @@ summary = "brain-dead simple config-ini parsing"
 files = [
     {file = "iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374"},
     {file = "iniconfig-2.0.0.tar.gz", hash = "sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3"},
+]
+
+[[package]]
+name = "isort"
+version = "5.12.0"
+requires_python = ">=3.8.0"
+summary = "A Python utility / library to sort Python imports."
+files = [
+    {file = "isort-5.12.0-py3-none-any.whl", hash = "sha256:f84c2818376e66cf843d497486ea8fed8700b340f308f076c6fb1229dff318b6"},
+    {file = "isort-5.12.0.tar.gz", hash = "sha256:8bef7dde241278824a6d83f44a544709b065191b95b6e50894bdc722fcba0504"},
 ]
 
 [[package]]

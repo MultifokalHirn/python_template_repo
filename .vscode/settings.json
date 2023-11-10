@@ -1,0 +1,7 @@
+{
+    "evenBetterToml.formatter.reorderKeys": false,
+    "[toml]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "be5invis.toml"
+    },
+}

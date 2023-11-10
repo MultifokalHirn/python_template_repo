@@ -18,7 +18,7 @@ def set_up_logger(
     ..  code-block:: python
         :caption: Minimal example
 
-        from py_scaffolding.logging import set_up_logger
+        from src.logging import set_up_logger
         LOG = set_up_logger(logger_name=__name__)
 
         # ... later in the code ...
@@ -47,7 +47,7 @@ def set_logger_level(
     ..  code-block:: python
         :caption: Minimal example
 
-        from py_scaffolding.logging import set_logger_level
+        from src.logging import set_logger_level
 
         # ... in the entry point ...
         set_logger_level(logger=LOG, level="DEBUG")

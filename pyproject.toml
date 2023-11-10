@@ -3,77 +3,98 @@ name = "python_template_repo"
 version = "0.0.0"
 description = "A small example projhect"
 authors = [
-    {name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"},
+  {name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"},
 ]
-requires-python = ">=3.9"
 readme = "README.md"
 license = {file = "LICENSE"}
+
+# requirements
+requires-python = ">=3.9"
 dependencies = [
-    "pydantic",
-    "ruamel-yaml",
-    "termcolor",
-    "typing-extensions",
-    "structlog",
-    # "types-requests",
-    "devtools","structlog"
+  "pydantic",
+  "ruamel-yaml",
+  "termcolor",
+  "typing-extensions",
+  "structlog", # "types-requests",
+  "devtools",
+  "structlog",
 ]
 
 [tool.pdm.dev-dependencies]
 base = [
-    "pre-commit",
-    "commitizen",
+  "pre-commit",
+  "commitizen",
+  "coverage"
 ]
 lint = [
-    "autopep8",
-    "flake8",
-    "mypy",
-    "mypy-extensions",
+  "autopep8",
+  "flake8",
+  "isort",
+  "mypy",
+  "mypy-extensions",
 ]
 test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-mypy",
-    "pytest-xdist",
-    "types-mock",
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+  "pytest-xdist",
+  "types-mock",
 ]
-doc = ["mkdocs"]
+refactoring = [
 
+]
 [build-system]
-requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+requires = ["pdm-backend"]
+
+[project.scripts]
+mycli = "src.app.__main__:main"
+
+# linting
+[tool.flake8]
+exclude = [".tox", ".venv", ".git", "__pypackages__", ".vscode"]
+ignore = ["C901", "W503"]
+max-complexity = 12
+max-line-length = 127
+show-source = true
+statistics = true
+
+[tool.isort]
+atomic = true
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 90
+multi_line_output = 3
+use_parentheses = true
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = "3.11"
+
+# meta tools
 
 [tool.coverage.run]
 branch = true
-omit=[
-    "*/__main__.py",
-    "*/tests/*",
-    "*/docs/*",
-    "*/.venv/*"]
+omit = [
+  "*/__main__.py",
+  "*/tests/*",
+  "*/docs/*",
+  "*/.venv/*",
+]
 
 [tool.coverage.report]
-exclude_lines =[
-    "pragma: no cover",
-    "if __name__ == .__main__.:"]
+exclude_lines = [
+  "pragma: no cover",
+  "if __name__ == .__main__.:",
+]
+fail_under = 99
 show_missing = true
 skip_covered = false
 sort = "Cover"
-fail_under = 99
-
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 90
-atomic = true
 
 [tool.commitizen]
 version = "0.0.0"
 version_files = [
-    "src/__version__.py",
-    "pyproject.toml:version"
+  "src/__version__.py",
+  "pyproject.toml:version",
 ]
-
-[tool.mypy]
-python_version = "3.11"
-plugins = ["pydantic.mypy"]
