@@ -8,11 +8,11 @@ define find.functions
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 endef
 
-help:
-	@echo 'The following commands can be used:'
-	@echo ''
-	$(call find.functions)
+.PHONY: help
+help: install
+	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.DEFAULT_GOAL := help
 
 # default target, when make executed without arguments
 all: venv

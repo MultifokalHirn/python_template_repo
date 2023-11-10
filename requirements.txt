@@ -55,13 +55,11 @@ ruamel-yaml==0.18.5
 ruamel-yaml-clib==0.2.8
 setuptools==68.2.2
 six==1.16.0
+structlog==23.2.0
 termcolor==2.3.0
 tomlkit==0.12.2
 types-mock==5.1.0.2
-types-pyyaml==6.0.12.12
-types-requests==2.31.0.10
 typing-extensions==4.8.0
-urllib3==2.0.7
 virtualenv==20.24.6
 watchdog==3.0.0
 wcwidth==0.2.9

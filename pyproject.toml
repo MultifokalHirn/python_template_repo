@@ -1,22 +1,21 @@
 [project]
 name = "python_template_repo"
 version = "0.0.0"
-description = "A small example package"
+description = "A small example projhect"
 authors = [
     {name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"},
 ]
 requires-python = ">=3.9"
 readme = "README.md"
-license = {text = "MIT"}
+license = {file = "LICENSE"}
 dependencies = [
     "pydantic",
     "ruamel-yaml",
     "termcolor",
     "typing-extensions",
-    "types-requests",
-    "types-mock",
-    "types-pyyaml",
-    "devtools"
+    "structlog",
+    # "types-requests",
+    "devtools","structlog"
 ]
 
 [tool.pdm.dev-dependencies]
@@ -35,9 +34,46 @@ test = [
     "pytest-cov",
     "pytest-mypy",
     "pytest-xdist",
+    "types-mock",
 ]
 doc = ["mkdocs"]
 
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[tool.coverage.run]
+branch = true
+omit=[
+    "*/__main__.py",
+    "*/tests/*",
+    "*/docs/*",
+    "*/.venv/*"]
+
+[tool.coverage.report]
+exclude_lines =[
+    "pragma: no cover",
+    "if __name__ == .__main__.:"]
+show_missing = true
+skip_covered = false
+sort = "Cover"
+fail_under = 99
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 90
+atomic = true
+
+[tool.commitizen]
+version = "0.0.0"
+version_files = [
+    "src/__version__.py",
+    "pyproject.toml:version"
+]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
