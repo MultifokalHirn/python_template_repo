@@ -33,5 +33,6 @@
     "evenBetterToml.formatter.reorderKeys": false,
     "[properties]": {
         "editor.formatOnSave": false,
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }

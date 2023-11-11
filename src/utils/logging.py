@@ -9,7 +9,7 @@ from typing import cast
 import structlog
 
 
-def set_up_logger(
+def setup_logger(
     *, logger_name: str, log_level: int = logging.INFO
 ) -> structlog.stdlib.BoundLogger:  # pragma: no cover
     """
@@ -18,8 +18,8 @@ def set_up_logger(
     ..  code-block:: python
         :caption: Minimal example
 
-        from src.logging import set_up_logger
-        LOG = set_up_logger(logger_name=__name__)
+        from src.logging import setup_logger
+        LOG = setup_logger(logger_name=__name__)
 
         # ... later in the code ...
         LOG.info(
@@ -29,7 +29,7 @@ def set_up_logger(
         )
     """
     # pylint: disable=protected-access
-    _set_up_structlog()
+    _setup_structlog()
     logger = cast(structlog.stdlib.BoundLogger,
                   structlog.get_logger(logger_name))
     logger.setLevel(log_level)
@@ -69,13 +69,13 @@ def _configure_logger_handlers() -> logging.StreamHandler:  # pragma: no cover
     return logger_handler
 
 
-def _set_up_structlog() -> None:  # pragma: no cover
+def _setup_structlog() -> None:
     """
     Internal helper to configure structlog.
 
     For further details look at https://www.structlog.org/en/stable/
     """
-    if structlog.is_configured():  # pragma: no cover
+    if structlog.is_configured():
         return
 
     structlog.configure(
