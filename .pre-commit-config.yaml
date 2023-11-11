@@ -48,9 +48,14 @@ repos:
     rev: 2.10.1
     hooks:
       - id: pdm-export
-        # command arguments, e.g.:
-        args: ["-o", "requirements.txt", "--without-hashes"]
-        files: ^pdm.lock$
+        args: ["-o", "requirements.txt", "--without-hashes", "--prod"]
+        # files: ^pdm.lock$
+  - repo: https://github.com/pdm-project/pdm
+    rev: 2.10.1
+    hooks:
+      - id: pdm-export
+        args: ["-o", "requirements-dev.txt", "--without-hashes", "--dev"]
+        # files: ^pdm.lock$
   - repo: https://github.com/pdm-project/pdm
     rev: 2.10.1
     hooks:

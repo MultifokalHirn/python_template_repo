@@ -6,17 +6,31 @@ MAKEFLAGS += --no-builtin-rules
 
 all: venv
 
-install: venv
+install-pdm: venv
 	$(VENV)/pip install --upgrade pip setuptools wheel
 	$(VENV)/pip install pdm
+	$(VENV)/pdm config python.use_venv false
+	$(VENV)/pdm use --venv in-project
+.PHONY: install-pdm
+
+bootstrap: clean-venv venv install-pdm dev
+.PHONY: bootstrap
+
+update: venv
 	$(VENV)/pdm self update
 	$(VENV)/pdm lock
-	$(VENV)/pdm install --dev
-.PHONY: install
+.PHONY: update
+
+prod: install-pdm
+	$(VENV)/pdm sync --fail-fast --prod
+.PHONY: dev
+
+dev: install-pdm
+	$(VENV)/pdm sync --fail-fast --dev
+.PHONY: dev
 
 ci: lint mypy test ## Run all checks (test, lint, typecheck)
 .PHONY: ci
-
 
 app: ## Run the app service
 	$(VENV)/python -m app
