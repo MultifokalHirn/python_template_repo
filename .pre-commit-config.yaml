@@ -43,11 +43,6 @@ repos:
     rev: v0.15
     hooks:
       - id: validate-pyproject
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.12.0
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]
   # export python requirements
   - repo: https://github.com/pdm-project/pdm
     rev: 2.10.1
@@ -60,7 +55,17 @@ repos:
     rev: 2.10.1
     hooks:
       - id: pdm-lock-check
-
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+      - id: codespell
+        additional_dependencies:
+          - tomli
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: 3.12.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
   # - repo: https://github.com/guilatrova/tryceratops # requires python>=3.8
   #   rev: v1.1.0
   #   hooks:

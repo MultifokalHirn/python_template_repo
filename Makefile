@@ -18,11 +18,17 @@ ci: lint mypy test ## Run all checks (test, lint, typecheck)
 .PHONY: ci
 
 
-run: venv ## Run the application
-run:
+app: ## Run the app service
 	$(VENV)/python -m app
-.PHONY: run
+.PHONY: app
 
+## to add additional services, they should follow the same pattern as the example api service:
+# api: ## Run the api service
+# 	$(VENV)/python -m api
+# .PHONY: api
+
+run: app ## Run the application
+.PHONY: run
 
 lint-fix: venv ## Run autopep8 and isort
 lint-fix:

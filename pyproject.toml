@@ -20,12 +20,20 @@ dependencies = [
   "structlog",
 ]
 
-[build-system]
-build-backend = "pdm.backend"
-requires = ["pdm-backend"]
+keywords = ["template"]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
 
 [project.scripts]
-mycli = "src.app.__main__:main"
+app = "python3 -m src.app:__main__"
 
 # linting
 [tool.flake8]
@@ -101,3 +109,13 @@ test = [
 refactoring = [
     "pyupgrade>=3.15.0",
 ]
+
+[tool.pdm.build]
+excludes = ["./**/.git"]
+package-dir = "src"
+includes = ["src/pdm"]
+source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
+
+[build-system]
+build-backend = "pdm.backend"
+requires = ["pdm-backend"]
