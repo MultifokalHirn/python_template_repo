@@ -29,7 +29,7 @@ mycli = "src.app.__main__:main"
 
 # linting
 [tool.flake8]
-exclude = [".tox", ".venv", ".git", "__pypackages__", ".vscode"]
+exclude = [".tox", ".venv", ".github", ".git", ".pdm-build", "__pypackages__", ".vscode"]
 ignore = ["C901", "W503"]
 max-complexity = 12
 max-line-length = 127
@@ -40,9 +40,9 @@ statistics = true
 atomic = true
 force_grid_wrap = 0
 include_trailing_comma = true
-line_length = 90
+line_length = 127
 multi_line_output = 3
-use_parentheses = true
+use_parentheses = false
 
 [tool.mypy]
 # plugins = ["pydantic.mypy"]

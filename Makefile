@@ -27,28 +27,28 @@ run:
 lint-fix: venv ## Run autopep8 and isort
 lint-fix:
 	# Run auto-formatters...
-	$(VENV)/autopep8 src/**/*.py --in-place --recursive --aggressive --aggressive
-	$(VENV)/isort src/**/*.py
+	$(VENV)/autopep8 **/*.py --in-place --recursive --aggressive --aggressive
+	$(VENV)/isort **/*.py
 .PHONY: lint-fix
 
 lint: lint-fix ## Runs flake8 on src, exit if critical rules are broken
 lint:
 	# Run flake8...
-	$(VENV)/flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=127
-	$(VENV)/flake8 src/ --count --exit-zero --statistics
+	$(VENV)/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=127
+	$(VENV)/flake8 . --count --exit-zero --statistics
 .PHONY: lint
 
 mypy: venv ## Runs mypy on src, exit if critical rules are broken
 mypy:
 	# Run type checks...
-	$(VENV)/mypy --show-error-codes --pretty src/
+	$(VENV)/mypy --show-error-codes --pretty .
 .PHONY: mypy
 
 
 test: venv ## Run pytest
 test:
 	# Run pytest...
-	$(VENV)/pytest . -p no:logging -p no:warnings
+	$(VENV)/pytest tests/ -p no:logging -p no:warnings
 .PHONY: test
 
 # clean:

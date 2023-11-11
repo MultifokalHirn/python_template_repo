@@ -4,4 +4,7 @@
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "be5invis.toml"
     },
+    "[properties]": {
+        "editor.formatOnSave": false,
+    }
 }
