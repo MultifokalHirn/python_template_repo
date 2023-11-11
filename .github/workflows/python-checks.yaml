@@ -15,11 +15,11 @@ permissions:
 
 jobs:
   build:
-    name: Lint & Test for${{ matrix.python-version }}
+    name: Lint & Test for ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 1
-      fail-fast: true
+      max-parallel: 2
+      # fail-fast: true
       matrix:
         python-version: [3.8, 3.11]
 

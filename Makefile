@@ -13,19 +13,16 @@ install-pdm: venv
 	$(VENV)/pdm use --venv in-project
 .PHONY: install-pdm
 
-bootstrap: clean-venv venv install-pdm dev
+bootstrap: clean-venv venv install-pdm dev ## fresh install of venv and dependencies
 .PHONY: bootstrap
 
-update: venv
-	$(VENV)/pdm self update
-	$(VENV)/pdm lock
-.PHONY: update
 
-prod: install-pdm
+
+prod: install-pdm  ## install prod dependencies
 	$(VENV)/pdm sync --fail-fast --prod
 .PHONY: dev
 
-dev: install-pdm
+dev: install-pdm  ## install dev dependencies
 	$(VENV)/pdm sync --fail-fast --dev
 .PHONY: dev
 
@@ -35,6 +32,11 @@ ci: lint mypy test ## Run all checks (test, lint, typecheck)
 app: ## Run the app service
 	$(VENV)/python -m app
 .PHONY: app
+
+update: venv ## update lock file if needed
+	$(VENV)/pdm self update
+	$(VENV)/pdm lock
+.PHONY: update
 
 ## to add additional services, they should follow the same pattern as the example api service:
 # api: ## Run the api service
