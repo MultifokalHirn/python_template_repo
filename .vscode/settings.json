@@ -1,9 +1,36 @@
 {
-    "evenBetterToml.formatter.reorderKeys": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+    },
+    "autopep8.args": [
+        "--max-line-length",
+        "127"
+    ],
+    "flake8.args": [
+        "--config=setup.cfg"
+    ],
+    "isort.check": true,
+    "isort.args": [
+        "--line_length",
+        "127"
+    ],
+    "mypy-type-checker.args": [
+        "--config-file=pyproject.toml"
+    ],
+    "mypy-type-checker.severity": {
+        "error": "Error",
+        "note": "Information"
+    },
+    "mypy-type-checker.ignorePatterns": [],
     "[toml]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "be5invis.toml"
     },
+    "evenBetterToml.formatter.reorderKeys": false,
     "[properties]": {
         "editor.formatOnSave": false,
     }
