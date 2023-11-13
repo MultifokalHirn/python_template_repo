@@ -13,16 +13,14 @@ install-pdm: venv
 	$(VENV)/pdm use --venv in-project
 .PHONY: install-pdm
 
-bootstrap: clean-venv venv install-pdm dev ## fresh install of venv and dependencies
+bootstrap: clean-venv venv install-pdm ## fresh install of venv and dependencies
 .PHONY: bootstrap
 
-
-
-prod: install-pdm  ## install prod dependencies
+prod:  ## install prod dependencies
 	$(VENV)/pdm sync --fail-fast --prod
 .PHONY: dev
 
-dev: install-pdm  ## install dev dependencies
+dev:  ## install dev dependencies
 	$(VENV)/pdm sync --fail-fast --dev
 .PHONY: dev
 
@@ -83,8 +81,10 @@ define find.functions
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 endef
 
-help: ## Show this help.
-	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+help: ## Shows the available commands and their descriptions
+	@echo "Usage: make [target]"
+	@echo ""
+	@awk -F ':.*?## ' '/^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 .PHONY: help
 
 include Makefile.venv
