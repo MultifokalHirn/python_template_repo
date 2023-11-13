@@ -26,7 +26,7 @@ repos:
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.7.0
     hooks:
       - id: mypy
         additional_dependencies: [types-all]
@@ -49,19 +49,19 @@ repos:
     hooks:
       - id: pdm-export
         args: ["-o", "requirements.txt", "--without-hashes", "--prod"]
-        # files: ^pdm.lock$
+        files: ^pdm.lock$
   - repo: https://github.com/pdm-project/pdm
     rev: 2.10.1
     hooks:
       - id: pdm-export
         args: ["-o", "requirements-dev.txt", "--without-hashes", "--dev"]
-        # files: ^pdm.lock$
+        files: ^pdm.lock$
   - repo: https://github.com/pdm-project/pdm
     rev: 2.10.1
     hooks:
       - id: pdm-lock-check
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.4
+    rev: v2.2.6
     hooks:
       - id: codespell
         additional_dependencies:

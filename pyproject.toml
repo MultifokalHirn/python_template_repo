@@ -9,7 +9,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 
 # requirements
-requires-python = ">=3.9"
+requires-python = ">=3.8.1"
 dependencies = [
   "pydantic",
   "ruamel-yaml",
@@ -53,10 +53,10 @@ use_parentheses = false
 
 [tool.mypy]
 # plugins = ["pydantic.mypy"]
-python_version = "3.11"
+# python_version = "3.11"
 ignore_missing_imports = true
-
-# meta tools
+disallow_any_unimported = true
+pretty = true
 
 [tool.coverage.run]
 branch = true
@@ -89,14 +89,18 @@ version_files = [
 base = [
   "pre-commit",
   "commitizen",
-  "coverage"
+  "coverage",
+  "tox",
+  "tox-pdm"
 ]
 lint = [
-  "autopep8",
   "flake8",
-  "isort",
   "mypy",
   "mypy-extensions",
+]
+lint-fix = [
+  "autopep8",
+  "isort",
 ]
 test = [
   "pytest",
@@ -114,6 +118,9 @@ excludes = ["./**/.git"]
 package-dir = "src"
 includes = ["src/pdm"]
 source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::DeprecationWarning"]
 
 [build-system]
 build-backend = "pdm.backend"

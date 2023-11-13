@@ -1,3 +1,4 @@
+[![Github Actions](https://github.com/MultifokalHirn/python_template_repo/workflows/Tests/badge.svg)](https://github.com/pdm-project/tox-pdm/actions)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/python_template_repo)
 ![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/python_template_repo)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/python_template_repo)
@@ -22,7 +23,7 @@ This is my personal template for a python project containing everything needed t
 
 ### Python Development
 
-![py3](https://img.shields.io/badge/-python>=3.8-3776AB?logo=python&logoColor=FFFFFF&style=flat-square)
+![py3](https://img.shields.io/badge/-python>=3.8.1-3776AB?logo=python&logoColor=FFFFFF&style=flat-square)
 ![pdm](https://img.shields.io/badge/depedency_manager-pdm-blueviolet?logoColor=FFFFFF&style=flat-square)
 ![pytest](https://img.shields.io/badge/testing-pytest-0A9EDC?logo=pytest&logoColor=FFFFFF&style=flat-square)
 ![mypy](https://img.shields.io/badge/typechecker-mypy-blue?&style=flat-square)
