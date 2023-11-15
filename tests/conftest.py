@@ -17,8 +17,7 @@ class JSONLogIO(StringIO):
     def entries(self) -> List[Dict]:
         # build _entries only once
         if not self._entries:
-            self._entries = [json.loads(line)
-                             for line in self.getvalue().splitlines()]
+            self._entries = [json.loads(line) for line in self.getvalue().splitlines()]
 
         return self._entries
 

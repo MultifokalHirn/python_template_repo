@@ -1,22 +1,22 @@
 {
     "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": true,
+            "source.fixAll": true
         },
     },
-    "autopep8.args": [
-        "--max-line-length",
-        "127"
+    "ruff.lint.args": [
+        "--config=./pyproject.toml"
     ],
+    "ruff.enable": true,
+    // "autopep8.args": [
+    //     "--max-line-length",
+    //     "127"
+    // ],
     "flake8.args": [
         "--config=setup.cfg"
-    ],
-    "isort.check": true,
-    "isort.args": [
-        "--line_length",
-        "127"
     ],
     "mypy-type-checker.args": [
         "--config-file=pyproject.toml"
@@ -26,6 +26,11 @@
         "note": "Information"
     },
     "mypy-type-checker.ignorePatterns": [],
+    "[markdown]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true
+        },
+    },
     "[toml]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "be5invis.toml"
@@ -34,5 +39,8 @@
     "[properties]": {
         "editor.formatOnSave": false,
     },
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
+    "editor.cursorStyle": "block"
 }

@@ -225,8 +225,8 @@ endif
 $(VENV):
 	$(PY) -m venv $(VENVDIR)
 	$(VENV)/python -m pip install --upgrade pip setuptools wheel pdm
-	$(VENV)/pdm config python.use_venv false
-	$(VENV)/pdm use --venv in-project
+	$(VENV)/pdm config python.use_venv true
+	# $(VENV)/pdm use --venv in-project
 
 $(VENV)/$(MARKER): $(VENVDEPENDS) | $(VENV)
 # ifneq ($(strip $(REQUIREMENTS_TXT)),)
