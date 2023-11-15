@@ -4,24 +4,32 @@ MAKEFLAGS += --no-builtin-rules
 
 # ENVIRONMENT_VARIABLE_FILE := .env
 
-all: venv
+# all: venv
 
-install-pdm: venv
-	$(VENV)/pip install --upgrade pip setuptools wheel
-	$(VENV)/pip install pdm
-	$(VENV)/pdm config python.use_venv false
-	$(VENV)/pdm use --venv in-project
-.PHONY: install-pdm
+python-version: ## Show the python version
+	# Show the python version
+	@python --version
+.PHONY: python-version
 
-bootstrap: clean-venv venv install-pdm ## fresh install of venv and dependencies
+# install-pdm: venv
+# 	$(VENV)/python -V
+# 	$(VENV)/pip install --upgrade pip setuptools wheel
+# 	$(VENV)/pip install pdm
+# 	$(VENV)/pdm config python.use_venv false
+# 	$(VENV)/pdm use --venv in-project
+# .PHONY: install-pdm
+
+bootstrap: python-version clean-venv venv ## fresh install of venv and dependencies
 .PHONY: bootstrap
 
 prod:  ## install prod dependencies
+	# install prod dependencies
 	$(VENV)/pdm sync --fail-fast --prod
 .PHONY: dev
 
-dev:  ## install dev dependencies
-	$(VENV)/pdm sync --fail-fast --dev
+dev:  ## install all dependencies in lock file
+	# install all dependencies in lock file
+	$(VENV)/pdm sync
 .PHONY: dev
 
 ci: lint mypy test ## Run all checks (test, lint, typecheck)

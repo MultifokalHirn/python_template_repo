@@ -224,12 +224,14 @@ endif
 
 $(VENV):
 	$(PY) -m venv $(VENVDIR)
-	$(VENV)/python -m pip install --upgrade pip setuptools wheel
+	$(VENV)/python -m pip install --upgrade pip setuptools wheel pdm
+	$(VENV)/pdm config python.use_venv false
+	$(VENV)/pdm use --venv in-project
 
 $(VENV)/$(MARKER): $(VENVDEPENDS) | $(VENV)
-ifneq ($(strip $(REQUIREMENTS_TXT)),)
-	$(VENV)/pip install $(foreach path,$(REQUIREMENTS_TXT),-r $(path))
-endif
+# ifneq ($(strip $(REQUIREMENTS_TXT)),)
+# 	$(VENV)/pip install $(foreach path,$(REQUIREMENTS_TXT),-r $(path))
+# endif
 ifneq ($(strip $(VENV_LOCAL_PACKAGE)),)
 	$(VENV)/pip install $(foreach path,$(sort $(VENV_LOCAL_PACKAGE)),-e $(dir $(path)))
 endif
