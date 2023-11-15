@@ -149,14 +149,9 @@ base = [
   "tox-pdm"
 ]
 lint = [
-  # "flake8",
   "ruff",
   "mypy",
   "mypy-extensions",
-]
-lint-fix = [
-  # "autopep8",
-  # "isort",
 ]
 test = [
   "pytest",

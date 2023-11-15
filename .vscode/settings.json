@@ -39,6 +39,10 @@
     "[properties]": {
         "editor.formatOnSave": false,
     },
+    "[yaml]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
     "python.analysis.typeCheckingMode": "basic",
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",

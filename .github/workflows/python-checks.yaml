@@ -1,13 +1,19 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Run Checks on Code
+---
+name: Test
 
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+    paths-ignore:
+      - "docs/**"
+      - "mypyc/doc/**"
+      - "**/*.rst"
+      - "**/*.md"
+      - .gitignore
+      - CREDITS
+      - LICENSE
   workflow_dispatch:
 
 permissions:
@@ -18,8 +24,8 @@ jobs:
     name: Lint & Test for ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 2
-      # fail-fast: true
+      max-parallel: 1
+      fail-fast: true
       matrix:
         python-version: [3.8, 3.11, 3.12]
 
@@ -29,15 +35,15 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Setup environment
+        run: make bootstrap
       - name: Install dependencies
-        run: |
-          make bootstrap
-          make dev
-      - name: Lint
-        run: make lint
-        continue-on-error: true
+        run: make dev
+
       - name: Test with pytest
         run: make test
+      - name: Lint
+        run: make lint
       # - uses: actions/checkout@v4
       # - name: Set up Python ${{ matrix.python-version }}
       #   uses: pdm-project/setup-pdm@v3

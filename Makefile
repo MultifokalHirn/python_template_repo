@@ -52,19 +52,24 @@ update: venv ## update lock file if needed
 run: app ## Run the application
 .PHONY: run
 
-lint-fix: venv ## Run autopep8 and isort
-lint-fix:
-	# Run auto-formatters...
-	$(VENV)/autopep8 **/*.py --in-place --recursive --aggressive --aggressive
-	$(VENV)/isort **/*.py
-.PHONY: lint-fix
-
-lint: lint-fix ## Runs flake8 on src, exit if critical rules are broken
+# lint-fix: venv ## Run autopep8 and isort
+# lint-fix:
+# 	# Run auto-formatters...
+# 	$(VENV)/autopep8 **/*.py --in-place --recursive --aggressive --aggressive
+# 	$(VENV)/isort **/*.py
+# .PHONY: lint-fix
+lint: ## Runs lint on src, exit if critical rules are broken
 lint:
+	$(VENV)/ruff check src/ tests/ --config=./pyproject.toml
+.PHONY: lint
+
+
+flake8: ## Runs flake8 on src, exit if critical rules are broken
+flake8:
 	# Run flake8...
 	$(VENV)/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=127
 	$(VENV)/flake8 . --count --exit-zero --statistics
-.PHONY: lint
+.PHONY: flake8
 
 mypy: venv ## Runs mypy on src, exit if critical rules are broken
 mypy:
