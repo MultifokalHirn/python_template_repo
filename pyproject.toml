@@ -1,6 +1,6 @@
 [project]
 name = "python_template_repo"
-version = "0.0.0"
+version = "1.0.0"
 description = "A small example projhect"
 authors = [
   {name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"},
@@ -78,7 +78,7 @@ skip_covered = false
 sort = "Cover"
 
 [tool.commitizen]
-version = "0.0.0"
+version = "1.0.0"
 version_files = [
   "src/__version__.py",
   "pyproject.toml:version",

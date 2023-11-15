@@ -72,7 +72,7 @@ make run           # starts the application
 - [x] Configuration for VSCode in [`.vscode/`](./.vscode)
 - [x] Configuration for `pre-commit` hooks in [`.pre-commit-config.yaml`](./.pre-commit-config.yaml)
 - [x] Templates for [Issues](./.github/ISSUE_TEMPLATE.md) and [PRs](./.github/PULL_REQUEST_TEMPLATE.md) on GitHub
-- [ ] set up dependabot
+- [x] set up dependabot
 
 ### Demo Project
 
