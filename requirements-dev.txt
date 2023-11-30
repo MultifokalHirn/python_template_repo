@@ -33,7 +33,7 @@ pre-commit==3.5.0
 prompt-toolkit==3.0.41
 pydantic==2.5.2
 pydantic-core==2.14.1
-pygments==2.16.1
+pygments==2.17.2
 pyproject-api==1.6.1
 pytest==7.4.3
 pytest-cov==4.1.0
