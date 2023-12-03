@@ -56,5 +56,5 @@ tox-pdm==0.7.0
 types-mock==5.1.0.3
 typing-extensions==4.8.0
 virtualenv==20.24.6
-wcwidth==0.2.10
+wcwidth==0.2.12
 zipp==3.17.0
