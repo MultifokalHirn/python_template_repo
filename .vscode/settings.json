@@ -36,15 +36,17 @@
         "editor.defaultFormatter": "be5invis.toml"
     },
     "evenBetterToml.formatter.reorderKeys": false,
+    "telemetry.telemetryLevel": "off",
     "[properties]": {
         "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
     },
     "[yaml]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "editor.wordWrap": "on",
     "python.analysis.typeCheckingMode": "basic",
-    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
     "editor.cursorStyle": "block"
 }

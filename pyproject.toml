@@ -23,7 +23,7 @@ dependencies = [
 keywords = ["template"]
 classifiers = [
     "Topic :: Software Development :: Build Tools",
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -34,14 +34,7 @@ classifiers = [
 # [project.scripts]
 # app = "python3 -m app"
 
-# linting
-[tool.flake8]
-exclude = [".tox", ".venv", ".github", ".git", ".pdm-build", "__pypackages__", ".vscode"]
-ignore = ["C901", "W503"]
-max-complexity = 12
-max-line-length = 127
-show-source = true
-statistics = true
+
 
 [tool.isort]
 atomic = true
