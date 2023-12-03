@@ -7,10 +7,10 @@ devtools==0.12.2
 executing==2.0.1
 pydantic==2.5.2
 pydantic-core==2.14.5
-pygments==2.17.2
+pygments==2.16.1
 ruamel-yaml==0.18.5
 ruamel-yaml-clib==0.2.8
 six==1.16.0
 structlog==23.2.0
-termcolor==2.3.0
+termcolor==2.4.0
 typing-extensions==4.8.0
