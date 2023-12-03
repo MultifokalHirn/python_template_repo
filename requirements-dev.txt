@@ -51,7 +51,7 @@ structlog==23.2.0
 termcolor==2.3.0
 tokenize-rt==5.2.0
 tomlkit==0.12.3
-tox==4.11.3
+tox==4.11.4
 tox-pdm==0.7.0
 types-mock==5.1.0.2
 typing-extensions==4.8.0
