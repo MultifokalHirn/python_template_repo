@@ -4,6 +4,8 @@
 	"name": "Python Project",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	// "dockerComposeFile": "compose.yaml",
+	// "service": "devcontainer",
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {},
 		"ghcr.io/devcontainers-contrib/features/coverage-py:2": {},
@@ -91,18 +93,18 @@
 			"editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
 			"editor.cursorStyle": "block"
 		},
-		"codespaces": {
-			"repositories": {
-				"MultifokalHirn/python_template_repo": {
-					"permissions": {
-						"issues": "write"
-					}
-				}
-			},
-			"openFiles": [
-				"README.md"
-			]
-		}
+		// "codespaces": {
+		// 	"repositories": {
+		// 		"MultifokalHirn/python_template_repo": {
+		// 			"permissions": {
+		// 				"issues": "write"
+		// 			}
+		// 		}
+		// 	},
+		// 	"openFiles": [
+		// 		"README.md"
+		// 	]
+		// }
 	}
 }
 // Features to add to the dev container. More info: https://containers.dev/features.
