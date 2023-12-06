@@ -1,7 +1,17 @@
-"""Main project package."""
+"""<your project name here>
 
-__title__ = "template-project"
-__description__ = "Main package of "
-__author__ = "Lennard Wolf"
-__license__ = "MIT License"
-__build__ = 0x00001
+<your project description here>
+"""
+
+# Local
+from __metadata__ import __author__, __description__, __license__, __title__
+from __version__ import __version__
+
+# Public Re-Exports
+__all__ = (
+    "__title__",
+    "__description__",
+    "__version__",
+    "__author__",
+    "__license__",
+)
