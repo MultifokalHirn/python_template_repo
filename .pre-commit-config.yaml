@@ -92,5 +92,5 @@ repos:
     rev: 2.10.4
     hooks:
       - id: pdm-export
-        args: ["-o", "requirements-dev.txt", "--without-hashes", "--dev"]
+        args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":all"]
         files: ^pdm.lock$

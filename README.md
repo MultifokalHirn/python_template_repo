@@ -48,9 +48,9 @@ This is my personal template repository for python projects containing everythin
 git clone https://github.com/MultifokalHirn/python_template_repo.git
 cd python_template_repo/
 
-make bootstrap     # sets up dev environment and installs dependencies
+make bootstrap     # sets up virtual environment and installs pdm
 make dev           # sets up dev environment and installs dependencies
-make ci            # runs auto-fixes, linters and tests
+make ci            # runs formatter, linter, typechecker, and tests
 ```
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
