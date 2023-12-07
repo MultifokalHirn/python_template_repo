@@ -56,7 +56,7 @@ def set_logger_level(*, logger: BoundLogger, level: str) -> None:
     logger.info("Log level changed", new_level=clean_level, new_level_numeric=numeric_level)
 
 
-def _configure_logger_handlers() -> logging.StreamHandler:  # pragma: no cover
+def _configure_logger_handlers() -> logging.StreamHandler:  # type: ignore
     """Internal helper to add handlers."""
     logger_handler = logging.StreamHandler(sys.stdout)
     return logger_handler

@@ -30,7 +30,7 @@ dev:  ## install all dependencies in lock file
 	$(VENV)/pdm install -G :all
 .PHONY: dev
 
-ci: ## Runs ci 
+ci: ## Runs ci
 ci:
 	pdm run ci
 .PHONY: ci
