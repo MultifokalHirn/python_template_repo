@@ -4,8 +4,6 @@ MAKEFLAGS += --no-builtin-rules
 
 # ENVIRONMENT_VARIABLE_FILE := .env
 
-# all: venv
-
 python-version: ## Show the python version
 	# Show the python version
 	@python --version
@@ -23,25 +21,16 @@ bootstrap: python-version clean-venv venv ## fresh install of venv and dependenc
 .PHONY: bootstrap
 
 prod:  ## install prod dependencies
-	# install prod dependencies
-	$(VENV)/pdm sync --fail-fast --prod
-.PHONY: dev
+	$(VENV)/pdm install
+.PHONY: prod
 
 dev:  ## install all dependencies in lock file
-	# install all dependencies in lock file
-	$(VENV)/pdm sync
+	$(VENV)/pdm install -G :all
 .PHONY: dev
-
-ci: lint mypy test ## Run all checks (test, lint, typecheck)
-.PHONY: ci
-
-app: ## Run the app service
-	$(VENV)/python -m app
-.PHONY: app
 
 update: venv ## update lock file if needed
 	$(VENV)/pdm self update
-	$(VENV)/pdm lock
+	$(VENV)/pdm run lock
 .PHONY: update
 
 ## to add additional services, they should follow the same pattern as the example api service:
@@ -49,44 +38,34 @@ update: venv ## update lock file if needed
 # 	$(VENV)/python -m api
 # .PHONY: api
 
-run: app ## Run the application
-.PHONY: run
+# run: app ## Run the application
+# .PHONY: run
 
-# lint-fix: venv ## Run autopep8 and isort
-# lint-fix:
-# 	# Run auto-formatters...
-# 	$(VENV)/autopep8 **/*.py --in-place --recursive --aggressive --aggressive
-# 	$(VENV)/isort **/*.py
-# .PHONY: lint-fix
-lint: ## Runs lint on src, exit if critical rules are broken
+
+lint: ## Runs lint on src
 lint:
-	$(VENV)/ruff check src/ tests/ --config=./pyproject.toml
+	$(VENV)/pdm run lint
 .PHONY: lint
 
+format: ## Runs formatter on python files
+format:
+	$(VENV)/pdm run format
+.PHONY: format
 
-flake8: ## Runs flake8 on src, exit if critical rules are broken
-flake8:
-	# Run flake8...
-	$(VENV)/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --max-line-length=127
-	$(VENV)/flake8 . --count --exit-zero --statistics
-.PHONY: flake8
-
-mypy: venv ## Runs mypy on src, exit if critical rules are broken
+mypy: ## Runs mypy on src, exit if critical rules are broken
 mypy:
-	# Run type checks...
-	$(VENV)/mypy --show-error-codes --pretty .
+	$(VENV)/pdm run mypy
 .PHONY: mypy
 
-
-test: venv ## Run pytest
+test: ## Run pytest
 test:
-	# Run pytest...
-	$(VENV)/pytest tests/ -p no:logging -p no:warnings
+	$(VENV)/pdm run test
 .PHONY: test
 
-# clean:
-# 	rm -rf __pycache__
-# .PHONY: clean
+ci: ## Runs ci
+ci:
+	$(VENV)/pdm run ci
+.PHONY: ci
 
 .DEFAULT_GOAL := help
 

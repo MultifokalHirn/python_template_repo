@@ -1,69 +1,137 @@
+####################################################################################################
+# -------------------------------------------  Project  ------------------------------------------ #
+####################################################################################################
+
 [project]
 name = "python_template_repo"
 version = "1.0.0"
-description = "A small example projhect"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
+description = """\
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco \
+    laboris nisi ut aliquip ex ea commodo consequat.\
+"""
+keywords = ["template"]
+license = {file = "LICENSE"}
 maintainers = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
 readme = {content-type = "text/markdown", file = "README.md"}
-license = {file = "LICENSE"}
-keywords = ["template"]
-# requirements
-requires-python = ">=3.8.1"
-urls = {Homepage = "http://pyproject_api.readthedocs.org",Source = "https://github.com/tox-dev/pyproject-api",Tracker = "https://github.com/tox-dev/pyproject-api/issues"}
-dependencies = [
-    "importlib-metadata>=7.0.0",
-    "pydantic",
-    "ruamel-yaml",
-    "termcolor",
-    "typing-extensions",
-    "structlog", # "types-requests",
-    "devtools",
-    "structlog",
-]
-optional-dependencies.docs = [
-  "furo>=2023.8.19",
-  "sphinx<7.2",
-  "sphinx-autodoc-typehints>=1.24",
-]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Utilities",
-    "Operating System :: MacOS :: MacOS X",
-    "Operating System :: POSIX",
-    # "Operating System :: Microsoft :: Windows",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Utilities",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: POSIX", # "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3 :: Only", # "Programming Language :: Python :: 3.9",  # "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
 ]
-dynamic = [
-  "version",
+dependencies = [
+  "importlib-metadata>=7.0.0",
+  "pydantic",
+  "ruamel-yaml",
+  "termcolor",
+  "typing-extensions",
+  "structlog",
+  "types-requests",
+  "devtools",
+  "structlog",
 ]
+requires-python = ">=3.11"
+[project.optional-dependencies]
+all = [
+  "pdm[refactoring,test,dev,docs,lint,tox]",
+]
+dev = [
+  "pre-commit",
+  "commitizen",
+  "coverage",
+  "tox",
+  "tox-pdm",
+]
+docs = [
+  "furo",
+  "sphinx",
+  "sphinx-autodoc-typehints",
+]
+lint = [
+  "ruff",
+  "mypy",
+  "mypy-extensions",
+]
+refactoring = [
+  "pyupgrade>=3.15.0",
+]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+  "pytest-xdist",
+  "types-mock",
+  "covdefaults>=2.3",
+]
+tox = [
+  "tox",
+  "tox-pdm>=0.5",
+]
+[project.urls]
+Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
+Homepage = "https://github.com/MultifokalHirn/python_template_repo"
+Repository = "https://github.com/MultifokalHirn/python_template_repo"
+# Documentation = "https://"
 
-# [project.scripts]
-# app = "python3 -m app"
+[project.scripts]
+cli = "python_template_repo.cli:main"
 
-[tool.isort]
-atomic = true
-force_grid_wrap = 0
-include_trailing_comma = true
-line_length = 127
-multi_line_output = 3
-use_parentheses = false
+[build-system]
+build-backend = "pdm.backend"
+requires = ["pdm-backend"]
+
+
+
+####################################################################################################
+# ------------------------------------------  SCRIPTS  ------------------------------------------- #
+####################################################################################################
+
+
+[tool.pdm.scripts]
+_.env_file = ".env"
+ci = {shell = """\
+              pdm run format \
+              && pdm run lint \
+              && pdm run mypy \
+              && pdm run test \
+              """}
+cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
+docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
+format = {shell = "echo 'formatting...' && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/"}
+lint = {shell = "echo 'linting...' && .venv/bin/ruff check --config=./pyproject.toml src/ tests/"}
+lock = {shell = """\
+                pdm lock -G :all\
+                && source .venv/bin/activate \
+                && pdm sync\
+              """}
+mypy = {shell = "echo 'running typechecks...' && .venv/bin/mypy --config-file=./pyproject.toml src/"}
+test = {shell = "echo 'running tests...' && .venv/bin/pytest tests/ -p no:logging -p no:warnings"}
+tox = {cmd = ".venv/bin/tox"}
+
+
+####################################################################################################
+# --------------------------------------------  TOOLS  ------------------------------------------- #
+####################################################################################################
+
 
 [tool.mypy]
-# plugins = ["pydantic.mypy"]
-# python_version = "3.11"
-ignore_missing_imports = true
 disallow_any_unimported = false
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
 pretty = true
+python_version = "3.11"
 show_error_codes = true
 strict = true
 warn_redundant_casts = true
+warn_unused_ignores = false
 
 [tool.coverage.run]
 branch = true
@@ -80,6 +148,14 @@ exclude_lines = [
   "if __name__ == .__main__.:",
 ]
 fail_under = 99
+html.show_contexts = true
+html.skip_covered = false
+paths.source = [
+  "src",
+]
+report.omit = []
+run.parallel = true
+run.plugins = ["covdefaults"]
 show_missing = true
 skip_covered = false
 sort = "Cover"
@@ -87,123 +163,74 @@ sort = "Cover"
 [tool.commitizen]
 version = "1.0.0"
 version_files = [
-  "src/__version__.py",
+  "src/python_template_repo/__version__.py",
   "pyproject.toml:version",
 ]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".hg",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    "__pypackages__",
-    "_build",
-    "buck-out",
-    "build",
-    "dist",
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
 ]
-
-line-length = 127
 indent-width = 4
-
+line-length = 127
 # Assume Python 3.12
 target-version = "py312"
 
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-select = ["E4", "E7", "E9", "F"]
 ignore = []
-
+select = ["E4", "E7", "E9", "F"]
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
-
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
 [tool.ruff.format]
 # Like Black, use double quotes for strings.
 quote-style = "double"
-
 # Like Black, indent with spaces, rather than tabs.
 indent-style = "space"
-
 # Like Black, respect magic trailing commas.
 skip-magic-trailing-comma = false
-
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
+
 [tool.ruff.per-file-ignores]
 "tests/**/*.py" = [
-  "S101",  # asserts allowed in tests...
-  "FBT",  # don"t care about booleans as positional arguments in tests
+  "S101", # asserts allowed in tests...
+  "FBT", # don"t care about booleans as positional arguments in tests
   "INP001", # no implicit namespace
-  "D",  # don"t care about documentation in tests
-  "S603",  # `subprocess` call: check for execution of untrusted input
-  "PLR2004",  # Magic value used in comparison, consider replacing with a constant variable
+  "D", # don"t care about documentation in tests
+  "S603", # `subprocess` call: check for execution of untrusted input
+  "PLR2004", # Magic value used in comparison, consider replacing with a constant variable
 ]
-[tool.pdm.dev-dependencies]
-# pdm add -dG group package
-base = [
-  "pre-commit",
-  "commitizen",
-  "coverage",
-  "tox",
-  "tox-pdm"
-]
-lint = [
-  "ruff",
-  "mypy",
-  "mypy-extensions",
-]
-test = [
-  "pytest",
-  "pytest-cov",
-  "pytest-mypy",
-  "pytest-xdist",
-  "types-mock",
-  "covdefaults>=2.3",
-]
-docs = [
-  "furo>=2023.8.19",
-  "sphinx<7.2",
-  "sphinx-autodoc-typehints>=1.24",
-]
-refactoring = [
-    "pyupgrade>=3.15.0",
-]
+
+[tool.pdm]
+# version = {from = "src/python_template_repo/__init__.py"}
 
 [tool.pdm.build]
 excludes = ["./**/.git"]
+includes = ["src/**/*", "pyproject.toml", "LICENSE", "README.md"]
 package-dir = "src"
-includes = ["src/pdm"]
 source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
-
-[build-system]
-build-backend = "pdm.backend"
-requires = ["pdm-backend"]
-
-[tool.coverage]
-html.show_contexts = true
-html.skip_covered = false
-paths.source = [
-  "src"
-]
-report.omit = []
-run.parallel = true
-run.plugins = ["covdefaults"]
