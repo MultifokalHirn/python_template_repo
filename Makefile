@@ -21,23 +21,12 @@ bootstrap: python-version clean-venv venv ## fresh install of venv and dependenc
 .PHONY: bootstrap
 
 prod:  ## install prod dependencies
-	# install prod dependencies
 	$(VENV)/pdm install
 .PHONY: prod
 
 dev:  ## install all dependencies in lock file
-	# install all dependencies in lock file
 	$(VENV)/pdm install -G :all
 .PHONY: dev
-
-ci: ## Runs ci
-ci:
-	pdm run ci
-.PHONY: ci
-
-# app: ## Run the app service
-# 	$(VENV)/python -m app
-# .PHONY: app
 
 update: venv ## update lock file if needed
 	$(VENV)/pdm self update
@@ -55,25 +44,28 @@ update: venv ## update lock file if needed
 
 lint: ## Runs lint on src
 lint:
-	pdm run lint
+	$(VENV)/pdm run lint
 .PHONY: lint
 
 format: ## Runs formatter on python files
 format:
-	pdm run format
+	$(VENV)/pdm run format
 .PHONY: format
 
 mypy: ## Runs mypy on src, exit if critical rules are broken
 mypy:
-	pdm run mypy
+	$(VENV)/pdm run mypy
 .PHONY: mypy
 
-
-test: venv ## Run pytest
+test: ## Run pytest
 test:
-	# Run pytest...
-	pdm run test
+	$(VENV)/pdm run test
 .PHONY: test
+
+ci: ## Runs ci
+ci:
+	$(VENV)/pdm run ci
+.PHONY: ci
 
 .DEFAULT_GOAL := help
 
