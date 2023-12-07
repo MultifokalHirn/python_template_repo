@@ -74,14 +74,14 @@ flake8:
 mypy: venv ## Runs mypy on src, exit if critical rules are broken
 mypy:
 	# Run type checks...
-	$(VENV)/mypy --show-error-codes --pretty .
+	pdm run mypy
 .PHONY: mypy
 
 
 test: venv ## Run pytest
 test:
 	# Run pytest...
-	$(VENV)/pytest tests/ -p no:logging -p no:warnings
+	pdm run test
 .PHONY: test
 
 # clean:
