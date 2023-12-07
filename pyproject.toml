@@ -1,4 +1,11 @@
+####################################################################################################
+# -------------------------------------------  Project  ------------------------------------------ #
+####################################################################################################
+
 [project]
+name = "python_template_repo"
+version = "1.0.0"
+requires-python = ">=3.9"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
 description = """\
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
@@ -9,12 +16,7 @@ description = """\
 keywords = ["template"]
 license = {file = "LICENSE"}
 maintainers = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
-name = "python_template_repo"
 readme = {content-type = "text/markdown", file = "README.md"}
-version = "1.0.0"
-requires-python = ">=3.9"
-urls = {Homepage = "http://pyproject_api.readthedocs.org", Source = "https://github.com/tox-dev/pyproject-api", Tracker = "https://github.com/tox-dev/pyproject-api/issues"}
-
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -29,15 +31,15 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "importlib-metadata>=7.0.0",
-    "pydantic",
-    "ruamel-yaml",
-    "termcolor",
-    "typing-extensions",
-    "structlog",
-    "types-requests",
-    "devtools",
-    "structlog",
+  "importlib-metadata>=7.0.0",
+  "pydantic",
+  "ruamel-yaml",
+  "termcolor",
+  "typing-extensions",
+  "structlog",
+  "types-requests",
+  "devtools",
+  "structlog",
 ]
 [project.optional-dependencies]
 dev = [
@@ -46,6 +48,11 @@ dev = [
   "coverage",
   "tox",
   "tox-pdm",
+]
+docs = [
+  "furo",
+  "sphinx",
+  "sphinx-autodoc-typehints",
 ]
 lint = [
   "ruff",
@@ -63,19 +70,35 @@ test = [
   "types-mock",
   "covdefaults>=2.3",
 ]
-docs = [
-  "furo",
-  "sphinx",
-  "sphinx-autodoc-typehints",
+tox = [
+    "tox",
+    "tox-pdm>=0.5",
 ]
+all = [
+    "pdm[refactoring,test,dev,docs,lint,tox]",
+]
+[project.urls]
+Homepage = "https://github.com/MultifokalHirn/python_template_repo"
+Repository = "https://github.com/MultifokalHirn/python_template_repo"
+Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
+# Documentation = "https://pdm-project.org"
+# [project.scripts]
+# pdm = "pdm.core:main"
+
+[build-system]
+build-backend = "pdm.backend"
+requires = ["pdm-backend"]
+####################################################################################################
+# --------------------------------------------  TOOLS  -------------------------------------------- #
+####################################################################################################
 
 [tool.mypy]
-python_version = "3.11"
 disallow_any_unimported = false
 ignore_missing_imports = true
-show_error_codes = true
 plugins = ["pydantic.mypy"]
 pretty = true
+python_version = "3.11"
+show_error_codes = true
 strict = true
 warn_redundant_casts = true
 
@@ -181,16 +204,18 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
 
-[build-system]
-build-backend = "pdm.backend"
-requires = ["pdm-backend"]
 
 [tool.pdm.scripts]
 _.env_file = ".env"
-test = {cmd = "pytest tests/ -p no:logging -p no:warnings"}
-mypy = {cmd = "mypy --config-file=./pyproject.toml src/"}
 format = {cmd = "ruff --config-file=./pyproject.toml --fix src/ tests/"}
 lint = {cmd = "ruff check --config-file=./pyproject.toml src/ tests/"}
+lock = {shell = """\
+                pdm lock -G :all \
+                source .venv/bin/activate \
+                && pdm sync\
+              """}
+mypy = {cmd = "mypy --config-file=./pyproject.toml src/"}
+test = {cmd = "pytest tests/ -p no:logging -p no:warnings"}
 # [tool.isort]
 # atomic = true
 # force_grid_wrap = 0
