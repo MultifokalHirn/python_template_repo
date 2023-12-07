@@ -1,5 +1,10 @@
 # please, regularly run `pre-commit autoupdate`
 repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
@@ -48,7 +53,7 @@ repos:
     rev: v3.15.0
     hooks:
       - id: pyupgrade
-        args: [--py39-plus]
+        args: [--py311-plus]
   # - repo: https://github.com/jendrikseipp/vulture
   #   rev: v2.3
   #   hooks:
@@ -89,8 +94,3 @@ repos:
       - id: pdm-export
         args: ["-o", "requirements-dev.txt", "--without-hashes", "--dev"]
         files: ^pdm.lock$
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]

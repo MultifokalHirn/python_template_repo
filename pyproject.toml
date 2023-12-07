@@ -5,7 +5,6 @@
 [project]
 name = "python_template_repo"
 version = "1.0.0"
-requires-python = ">=3.9"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
 description = """\
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
@@ -24,9 +23,7 @@ classifiers = [
   "Topic :: Utilities",
   "Operating System :: MacOS :: MacOS X",
   "Operating System :: POSIX", # "Operating System :: Microsoft :: Windows",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3 :: Only", # "Programming Language :: Python :: 3.9",  # "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
@@ -41,7 +38,11 @@ dependencies = [
   "devtools",
   "structlog",
 ]
+requires-python = ">=3.11"
 [project.optional-dependencies]
+all = [
+  "pdm[refactoring,test,dev,docs,lint,tox]",
+]
 dev = [
   "pre-commit",
   "commitizen",
@@ -71,26 +72,55 @@ test = [
   "covdefaults>=2.3",
 ]
 tox = [
-    "tox",
-    "tox-pdm>=0.5",
-]
-all = [
-    "pdm[refactoring,test,dev,docs,lint,tox]",
+  "tox",
+  "tox-pdm>=0.5",
 ]
 [project.urls]
+Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
 Homepage = "https://github.com/MultifokalHirn/python_template_repo"
 Repository = "https://github.com/MultifokalHirn/python_template_repo"
-Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
-# Documentation = "https://pdm-project.org"
-# [project.scripts]
-# pdm = "pdm.core:main"
+# Documentation = "https://"
+
+[project.scripts]
+cli = "python_template_repo.cli:main"
 
 [build-system]
 build-backend = "pdm.backend"
 requires = ["pdm-backend"]
+
+
+
 ####################################################################################################
-# --------------------------------------------  TOOLS  -------------------------------------------- #
+# ------------------------------------------  SCRIPTS  ------------------------------------------- #
 ####################################################################################################
+
+
+[tool.pdm.scripts]
+_.env_file = ".env"
+ci = {shell = """\
+              pdm run format \
+              && pdm run lint \
+              && pdm run mypy \
+              && pdm run test \
+              """}
+cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
+docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
+format = {shell = "echo 'formatting...' && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/"}
+lint = {shell = "echo 'linting...' && .venv/bin/ruff check --config=./pyproject.toml src/ tests/"}
+lock = {shell = """\
+                pdm lock -G :all\
+                && source .venv/bin/activate \
+                && pdm sync\
+              """}
+mypy = {shell = "echo 'running typechecks...' && .venv/bin/mypy --config-file=./pyproject.toml src/"}
+test = {shell = "echo 'running tests...' && .venv/bin/pytest tests/ -p no:logging -p no:warnings"}
+tox = {cmd = ".venv/bin/tox"}
+
+
+####################################################################################################
+# --------------------------------------------  TOOLS  ------------------------------------------- #
+####################################################################################################
+
 
 [tool.mypy]
 disallow_any_unimported = false
@@ -102,7 +132,6 @@ show_error_codes = true
 strict = true
 warn_redundant_casts = true
 warn_unused_ignores = false
-
 
 [tool.coverage.run]
 branch = true
@@ -205,34 +234,3 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
-
-[project.scripts]
-cli = "python_template_repo.cli:main"
-
-[tool.pdm.scripts]
-_.env_file = ".env"
-format = {shell = "echo 'formatting...' && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/"}
-lint = {shell = "echo 'linting...' && .venv/bin/ruff check --config=./pyproject.toml src/ tests/"}
-lock = {shell = """\
-                pdm lock -G :all\
-                && source .venv/bin/activate \
-                && pdm sync\
-              """}
-mypy = {shell = "echo 'running typechecks...' && .venv/bin/mypy --config-file=./pyproject.toml src/"}
-test = {shell = "echo 'running tests...' && .venv/bin/pytest tests/ -p no:logging -p no:warnings"}
-tox = {cmd = ".venv/bin/tox"}
-cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
-docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
-ci = {shell = """\
-              pdm run format \
-              && pdm run lint \
-              && pdm run mypy \
-              && pdm run test \
-              """}
-# [tool.isort]
-# atomic = true
-# force_grid_wrap = 0
-# include_trailing_comma = true
-# line_length = 127
-# multi_line_output = 3
-# use_parentheses = false
