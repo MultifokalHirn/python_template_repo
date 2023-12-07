@@ -5,7 +5,7 @@
 groups = ["default", "all", "dev", "docs", "lint", "refactoring", "test", "tox"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:d9c1bf166475423646c69445e36e1e8294a53e386ab2951b1214ad56ee1b9b2e"
+content_hash = "sha256:50cb8d885b91c7859bb842a70d15c7771fb97fec389d8dba306034118685c0e8"
 
 [[package]]
 name = "alabaster"
@@ -694,6 +694,19 @@ dependencies = [
 files = [
     {file = "prompt_toolkit-3.0.41-py3-none-any.whl", hash = "sha256:f36fe301fafb7470e86aaf90f036eef600a3210be4decf461a5b1ca8403d3cb2"},
     {file = "prompt_toolkit-3.0.41.tar.gz", hash = "sha256:941367d97fc815548822aa26c2a269fdc4eb21e9ec05fc5d447cf09bad5d75f0"},
+]
+
+[[package]]
+name = "pyboxen"
+version = "1.2.0"
+requires_python = ">=3.8.0,<4.0.0"
+summary = "Beautiful, customizable boxes in your terminal using Python"
+dependencies = [
+    "rich>=12.5.1",
+]
+files = [
+    {file = "pyboxen-1.2.0-py3-none-any.whl", hash = "sha256:0ac8b790f5ad10305fbdd460a883949fe79c4ffa021b3757acbba5c91a17b604"},
+    {file = "pyboxen-1.2.0.tar.gz", hash = "sha256:755626dc0a917c6e0218af884359b1b159da1b79caec75b8f37d8b1f476e94e2"},
 ]
 
 [[package]]

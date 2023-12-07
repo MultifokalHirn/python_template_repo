@@ -1,10 +1,11 @@
 import contextlib
 import logging
 import warnings
+from collections.abc import Iterator
 from tempfile import mktemp
 from typing import Any
-from collections.abc import Iterator
 
+from pyboxen import boxen
 from rich.console import Console
 from rich.progress import Progress, ProgressColumn
 
@@ -53,7 +54,8 @@ class CLI:
             if not console.is_interactive:
                 kwargs.setdefault("crop", False)
                 kwargs.setdefault("overflow", "ignore")
-            console.print(message, **kwargs)
+
+            console.print(boxen(message, title="CLI", subtitle="", padding=2, subtitle_alignment="right"), **kwargs)
 
     @contextlib.contextmanager
     def logging(self, type_: str = "install") -> Iterator[logging.Logger]:

@@ -2,9 +2,7 @@
 
 Most of the setup is automated with `make`. Check the [`Makefile`](./Makefile) to learn more.
 
-## Setup
-
-### Requirements
+## Requirements
 
 * `Python>=3.11`
 * `make`:
@@ -12,14 +10,8 @@ Most of the setup is automated with `make`. Check the [`Makefile`](./Makefile) t
   * Linux: visit [gnu.org](https://www.gnu.org/software/make)
   * Windows: `choco install make` or check [chocolatey.org](https://chocolatey.org/install)
 
-<!-- To confirm these system dependencies are configured correctly:
 
-``` bash
-make bootstrap
-make doctor
-``` -->
-
-### Installing Dependencies
+### Setup
 
 `make` will take care of setting a the virtual environment (it will be located in `.venv`). It will also install `pdm` and with it all dependencies.
 
