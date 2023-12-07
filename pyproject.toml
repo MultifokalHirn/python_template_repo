@@ -101,6 +101,8 @@ python_version = "3.11"
 show_error_codes = true
 strict = true
 warn_redundant_casts = true
+warn_unused_ignores = false
+
 
 [tool.coverage.run]
 branch = true
@@ -204,18 +206,29 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
 
+[project.scripts]
+cli = "python_template_repo.cli:main"
 
 [tool.pdm.scripts]
 _.env_file = ".env"
-format = {cmd = "ruff --config-file=./pyproject.toml --fix src/ tests/"}
-lint = {cmd = "ruff check --config-file=./pyproject.toml src/ tests/"}
+format = {shell = "echo 'formatting...' && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/"}
+lint = {shell = "echo 'linting...' && .venv/bin/ruff check --config=./pyproject.toml src/ tests/"}
 lock = {shell = """\
-                pdm lock -G :all \
-                source .venv/bin/activate \
+                pdm lock -G :all\
+                && source .venv/bin/activate \
                 && pdm sync\
               """}
-mypy = {cmd = "mypy --config-file=./pyproject.toml src/"}
-test = {cmd = "pytest tests/ -p no:logging -p no:warnings"}
+mypy = {shell = "echo 'running typechecks...' && .venv/bin/mypy --config-file=./pyproject.toml src/"}
+test = {shell = "echo 'running tests...' && .venv/bin/pytest tests/ -p no:logging -p no:warnings"}
+tox = {cmd = ".venv/bin/tox"}
+cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
+docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
+ci = {shell = """\
+              pdm run format \
+              && pdm run lint \
+              && pdm run mypy \
+              && pdm run test \
+              """}
 # [tool.isort]
 # atomic = true
 # force_grid_wrap = 0
