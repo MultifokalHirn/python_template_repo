@@ -5,19 +5,23 @@
 
 # Python Project Template
 
-This is [my](https://github.com/MultifokalHirn) personal template for a python project containing everything needed to start developing.
+This is my personal template repository for python projects containing everything needed to start developing.
 
-## Features
+<!-- - Base Setup for Python Development
+- Development and CI tools already Set Up
+- Sensible Configuration out of the Box -->
 
-**Great Base Setup for Python Development**
-
-![py3](https://img.shields.io/badge/python->=3.8.1%20<=3.12.0-3776AB?logo=python&logoColor=FFFFFF&style=flat-square)
+![py3](https://img.shields.io/badge/python->=3.11.0-3776AB?logo=python&logoColor=FFFFFF&style=flat-square)
 ![pdm](https://img.shields.io/badge/depedency_manager-pdm-blueviolet?logoColor=FFFFFF&style=flat-square)
 ![pytest](https://img.shields.io/badge/test%20suite-pytest-0A9EDC?logo=pytest&logoColor=FFFFFF&style=flat-square)
 ![ruff](https://img.shields.io/badge/linter-ruff-006400?&style=flat-square)
 ![mypy](https://img.shields.io/badge/typechecker-mypy-blue?&style=flat-square)
 
-**Development and CI tools already Set Up**
+![pyproject](https://img.shields.io/badge/pyproject.toml-000000?logo=python&style=flat-square)
+![precommit](https://img.shields.io/badge/.pre--commit--config.yaml-000000?logo=precommit&style=flat-square)
+![visualstudiocode](https://img.shields.io/badge/-.vscode/-000000?logo=visualstudiocode&logoColor=007ACC&style=flat-square)
+![templates](https://img.shields.io/badge/Templates-000000?logo=github&logoColor=FFFFFF&style=flat-square)
+<!-- ![editorconfig](https://img.shields.io/badge/-.editorconfig-000000?logo=editorconfig&style=flat-square) -->
 
 ![make](https://img.shields.io/badge/Makefile-FFFFFF?logo=gnu&logoColor=A42E2B&style=flat-square)
 ![ghactions](https://img.shields.io/badge/Github_Actions-FFFFFF?logo=githubactions&style=flat-square)
@@ -38,18 +42,6 @@ This is [my](https://github.com/MultifokalHirn) personal template for a python p
 ## Table of Contents
  -->
 
-**Sensible Configuration out of the Box**
-
-![pyproject](https://img.shields.io/badge/pyproject.toml-000000?logo=python&style=flat-square)
-![precommit](https://img.shields.io/badge/.pre--commit--config.yaml-000000?logo=precommit&style=flat-square)
-![editorconfig](https://img.shields.io/badge/-.editorconfig-000000?logo=editorconfig&style=flat-square)
-![visualstudiocode](https://img.shields.io/badge/-.vscode/-000000?logo=visualstudiocode&logoColor=007ACC&style=flat-square)
-![templates](https://img.shields.io/badge/Templates-000000?logo=github&logoColor=FFFFFF&style=flat-square)
-
-## Getting Started
-
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
-
 ### Quickstart
 
 ``` bash
@@ -59,8 +51,9 @@ cd python_template_repo/
 make bootstrap     # sets up dev environment and installs dependencies
 make dev           # sets up dev environment and installs dependencies
 make ci            # runs auto-fixes, linters and tests
-make run           # starts the application
 ```
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
 
 ## Roadmap
 
@@ -109,19 +102,16 @@ If you have any suggestions for improvements, or tools to check out, please [fil
 
 ### Tried and Decided Against
 
-- `poetry` - using `pdm` instead because of bad experience with `poetry`
-- `flake8` - replaced by `ruff``
-- `autopep8` - replaced by `ruff``
-- `isort` - replaced by `ruff``
 - `black` - I like configuring stuff
+- `flake8` - replaced by `ruff`
+- `autopep8` - replaced by `ruff`
+- `isort` - replaced by `ruff`
+- `poetry` - using `pdm` instead because of bad experience with `poetry`
 
-### Currently Testing
+### Currently in Evaluation
 
-- `tox` - `nox` seems to be more popular, but `tox` seems to be more mature
-
-### Want to try
-
-- tba
+- `tox`
+- `readthedocs`
 
 ## Troubleshooting
 
@@ -135,7 +125,4 @@ Well, have you tried turning it off and on again?
 
 This project is authored by Lennard Wolf and open sourced under MIT license, see [`LICENSE`](./LICENSE) for details.
 
-<!-- <div align="center"> -->
-
 ![License](https://img.shields.io/github/license/MultifokalHirn/python_template_repo)
-<!-- </div> -->
