@@ -19,7 +19,7 @@ colorama==0.4.6
 commitizen==2.42.1
 covdefaults==2.3.0
 coverage==7.3.2
-decli==0.5.2
+decli==0.6.1
 devtools==0.12.2
 distlib==0.3.7
 docutils==0.20.1
