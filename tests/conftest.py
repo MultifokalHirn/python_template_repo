@@ -1,7 +1,8 @@
 import json
 import logging
+from collections.abc import Iterator
 from io import StringIO
-from typing import Any, Dict, Iterator, List
+from typing import Any
 
 import pytest
 
@@ -14,7 +15,7 @@ class JSONLogIO(StringIO):
         self._entries: list[dict] = []
 
     @property
-    def entries(self) -> List[Dict]:
+    def entries(self) -> list[dict]:
         # build _entries only once
         if not self._entries:
             self._entries = [json.loads(line) for line in self.getvalue().splitlines()]

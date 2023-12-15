@@ -55,17 +55,19 @@ make ci            # runs formatter, linter, typechecker, and tests
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
 
-## Roadmap
+### Features
 
-### v1 Release
-
-- [x] [`Makefile`](./Makefile) for easy setup, testing, linting, etc.
-- [x] set up github actions for testing and linting
+- [x] [`Makefile`](./Makefile)
+- [x] Github Actions for testing and linting
 - [x] Configuration for python packages in [`pyproject.toml`](./pyproject.toml) and [`setup.cfg`](./setup.cfg)
 - [x] Configuration for VSCode in [`.vscode/`](./.vscode)
 - [x] Configuration for `pre-commit` hooks in [`.pre-commit-config.yaml`](./.pre-commit-config.yaml)
 - [x] Templates for [Issues](./.github/ISSUE_TEMPLATE.md) and [PRs](./.github/PULL_REQUEST_TEMPLATE.md) on GitHub
-- [x] set up dependabot
+- [x] Dependabot
+
+## Roadmap
+
+### v1 Release
 
 ### Demo Project
 

@@ -2,11 +2,11 @@
 
 ### Feat
 
-- add devcontainer.json, cnfigure dependabot, minor fixes
+- add devcontainer.json, configure dependabot, minor fixes
 
 ### Fix
 
-- template shouldnt give access to itself
+- template shouldn't give access to itself
 
 ## 1.0.0 (2023-11-15)
 

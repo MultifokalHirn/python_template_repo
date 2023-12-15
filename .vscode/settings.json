@@ -3,8 +3,8 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true,
-            "source.fixAll": true
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
         },
     },
     "ruff.lint.args": [
@@ -28,7 +28,7 @@
     "mypy-type-checker.ignorePatterns": [],
     "[markdown]": {
         "editor.codeActionsOnSave": {
-            "source.fixAll": true
+            "source.fixAll": "explicit"
         },
     },
     "[toml]": {

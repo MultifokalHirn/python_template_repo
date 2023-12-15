@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, Any
 
 from sphinx.domains.python import PythonDomain
 from sphinx.ext.extlinks import ExternalLinksChecker
-
 from tox import __version__
 
 if TYPE_CHECKING:
@@ -129,7 +128,7 @@ def setup(app: Sphinx) -> None:
     tox_cfg = SourceFileLoader("tox_conf", str(here / "tox_conf.py")).load_module().ToxConfig
     app.add_directive(tox_cfg.name, tox_cfg)
 
-    def check_uri(self: ExternalLinksChecker, refnode: reference) -> None:  #
+    def check_uri(self: ExternalLinksChecker, refnode: reference) -> Any:
         if refnode.document.attributes["source"].endswith("index.rst"):
             return None  # do not use for the index file
         return prev_check(self, refnode)
