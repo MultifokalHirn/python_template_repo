@@ -1,4 +1,5 @@
 [![Tests](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml/badge.svg?branch=main)](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml)
+![Coverage](./docs/img/coverage.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/python_template_repo)
 ![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/python_template_repo)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/python_template_repo)
@@ -57,21 +58,27 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and c
 
 ### Features
 
-- [x] [`Makefile`](./Makefile)
-- [x] Github Actions for testing and linting
-- [x] Configuration for python packages in [`pyproject.toml`](./pyproject.toml) and [`setup.cfg`](./setup.cfg)
-- [x] Configuration for VSCode in [`.vscode/`](./.vscode)
-- [x] Configuration for `pre-commit` hooks in [`.pre-commit-config.yaml`](./.pre-commit-config.yaml)
+- [x] [`pyproject.toml`](./pyproject.toml) with [`pdm`](https://pdm.fming.dev/) as dependency manager
+- [x] Coverage Reporting and automated badge generation
+- [x] [`Makefile`](./Makefile) with targets for common tasks like setting up the dev environment, running tests, and formatting code
+- [x] Dev packages configured out of the box (in [`pyproject.toml`](./pyproject.toml))
+- [x] `pre-commit` hooks in [`.pre-commit-config.yaml`](./.pre-commit-config.yaml)
 - [x] Templates for [Issues](./.github/ISSUE_TEMPLATE.md) and [PRs](./.github/PULL_REQUEST_TEMPLATE.md) on GitHub
-- [x] Dependabot
+- [x] Github Actions for testing and linting
+- [x] Dependabot config for automated dependency updates
+- [x] Configuration for VSCode in [`.vscode/`](./.vscode)
 
 ## Roadmap
-
-### v1 Release
 
 ### Demo Project
 
 - [ ] create demo project to showcase best practices and features
+
+### Improve Documentation
+
+- [ ] document project structure
+- [ ] document pyenv
+- [ ] expand list of tools I have tried and decided against
 
 ### Ideas for v2 Release
 
@@ -80,19 +87,12 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and c
 - [ ] docker-compose for easy setup of dev environment
 - [ ] set up devcontainer
 - [ ] set up commitizen
-- [ ] set up coverage reporting
 - [ ] set up semantic-release
 - [ ] set up github actions for semantic versioning
 
-### Improve Documentation
+<!-- ### Ideas for the Future
 
-- [ ] document project structure
-- [ ] document pyenv
-- [ ] expand list of tools I have tried and decided against
-
-### Ideas for the Future
-
-- [ ] find out how to sync templates with projects that use them?
+- [ ] find out how to sync templates with projects that use them? -->
 
 ## "Why don't you use X?"
 
@@ -117,7 +117,7 @@ If you have any suggestions for improvements, or tools to check out, please [fil
 
 ## Troubleshooting
 
-In this section, you will find some common issues you might encounter and how to resolve them. If you are experiencing any issues that are not covered here, please [file an issue](https://github.com/MultifokalHirn/python_template_repo/issues).
+> In this section, you will find some common issues you might encounter and how to resolve them. If you are experiencing any issues that are not covered here, please [file an issue](https://github.com/MultifokalHirn/python_template_repo/issues).
 
 ### I does not work! I tried everything
 

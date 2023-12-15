@@ -11,13 +11,6 @@
         "--config=./pyproject.toml"
     ],
     "ruff.enable": true,
-    // "autopep8.args": [
-    //     "--max-line-length",
-    //     "127"
-    // ],
-    "flake8.args": [
-        "--config=setup.cfg"
-    ],
     "mypy-type-checker.args": [
         "--config-file=pyproject.toml"
     ],
@@ -36,7 +29,6 @@
         "editor.defaultFormatter": "be5invis.toml"
     },
     "evenBetterToml.formatter.reorderKeys": false,
-    "telemetry.telemetryLevel": "off",
     "[properties]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": null
@@ -48,5 +40,6 @@
     "editor.wordWrap": "on",
     "python.analysis.typeCheckingMode": "basic",
     "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
-    "editor.cursorStyle": "block"
+    "editor.cursorStyle": "block",
+    "python.analysis.autoImportCompletions": true
 }

@@ -5,7 +5,7 @@
 groups = ["default", "all", "dev", "docs", "lint", "refactoring", "test", "tox"]
 strategy = ["cross_platform"]
 lock_version = "4.4.1"
-content_hash = "sha256:f2b6b8cf92ea9a730b0eb546023d2fc342c0860b6647ad04bf2d311a3dfdcd00"
+content_hash = "sha256:e2fe65d1602a064cbbeeee859ecb5c8fed5fc9393d2e410d266a0bc3a56606e8"
 
 [[package]]
 name = "alabaster"
@@ -275,6 +275,18 @@ files = [
     {file = "coverage-7.3.3-cp312-cp312-win_amd64.whl", hash = "sha256:e995efb191f04b01ced307dbd7407ebf6e6dc209b528d75583277b10fd1800ee"},
     {file = "coverage-7.3.3-pp38.pp39.pp310-none-any.whl", hash = "sha256:d299d379b676812e142fb57662a8d0d810b859421412b4d7af996154c00c31bb"},
     {file = "coverage-7.3.3.tar.gz", hash = "sha256:df04c64e58df96b4427db8d0559e95e2df3138c9916c96f9f6a4dd220db2fdb7"},
+]
+
+[[package]]
+name = "coverage-badge"
+version = "1.1.0"
+summary = "Generate coverage badges for Coverage.py."
+dependencies = [
+    "coverage",
+]
+files = [
+    {file = "coverage-badge-1.1.0.tar.gz", hash = "sha256:c824a106503e981c02821e7d32f008fb3984b2338aa8c3800ec9357e33345b78"},
+    {file = "coverage_badge-1.1.0-py2.py3-none-any.whl", hash = "sha256:e365d56e5202e923d1b237f82defd628a02d1d645a147f867ac85c58c81d7997"},
 ]
 
 [[package]]

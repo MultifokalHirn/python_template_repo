@@ -6,7 +6,7 @@
 name = "python_template_repo"
 version = "1.0.0"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
-description = """\
+description = """ \
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
     Ut enim ad minim veniam, quis nostrud exercitation ullamco \
@@ -22,8 +22,8 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Utilities",
   "Operating System :: MacOS :: MacOS X",
-  "Operating System :: POSIX", # "Operating System :: Microsoft :: Windows",
-  "Programming Language :: Python :: 3 :: Only", # "Programming Language :: Python :: 3.9",  # "Programming Language :: Python :: 3.10",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
@@ -47,7 +47,6 @@ all = [
 dev = [
   "pre-commit",
   "commitizen",
-  "coverage",
   "tox",
   "tox-pdm",
 ]
@@ -65,12 +64,13 @@ refactoring = [
   "pyupgrade>=3.15.0",
 ]
 test = [
-  "pytest",
-  "pytest-cov",
+  "covdefaults>=2.3",
+  "coverage-badge",
+  "coverage[toml]",
   "pytest-mypy",
   "pytest-xdist",
+  "pytest",
   "types-mock",
-  "covdefaults>=2.3",
 ]
 tox = [
   "tox",
@@ -90,7 +90,6 @@ build-backend = "pdm.backend"
 requires = ["pdm-backend"]
 
 
-
 ####################################################################################################
 # ------------------------------------------  SCRIPTS  ------------------------------------------- #
 ####################################################################################################
@@ -98,25 +97,48 @@ requires = ["pdm-backend"]
 
 [tool.pdm.scripts]
 _.env_file = ".env"
-ci = {shell = """\
-              pdm run format \
-              && pdm run lint \
-              && pdm run mypy \
-              && pdm run test \
+# Dependency management
+lock = {shell = """ \
+                  pdm lock -G :all \
+                  && source .venv/bin/activate \
+                  && pdm sync \
+                """}
+update-all = {shell = """ \
+                        printf 'Updating all dependencies...' \
+                        && pdm update -G :all \
+                        && printf '\t✅\n' \
+                      """}
+# CI: format, lint, mypy, test
+format = {shell = """ \
+                    printf 'Formatting...' \
+                    && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ docs/ \
+                    && printf '\t✅\n' \
+                  """}
+lint = {shell = """ \
+                  printf 'Running Linter...' \
+                  && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ docs/ \
+                  && printf '\t✅\n' \
+                """}
+mypy = {shell = """ \
+                  printf 'Running type checker...' \
+                  && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml \
+                  && printf '\t✅\n' \
+                """}
+test = {shell = """ \
+                  printf 'Running tests...' \
+                  && .venv/bin/coverage run -m pytest tests/ --quiet --show-capture=log -p no:logging -p no:warnings \
+                  && coverage-badge -o docs/img/coverage.svg -f \
+                  && .venv/bin/coverage report \
+                """}
+ci = {shell = """ \
+                pdm run format \
+                && pdm run lint \
+                && pdm run mypy \
+                && pdm run test \
               """}
-cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
 docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
-format = {shell = "printf 'Formatting... ' && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ && printf '\t✅\n'"}
-lint = {shell = "printf 'Running Linter... ' && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ && printf '\t✅\n'"}
-update-all = {shell = "printf 'Updating all dependencies... ' && pdm update -G :all && printf '\t✅\n'"}
-lock = {shell = """\
-                pdm lock -G :all\
-                && source .venv/bin/activate \
-                && pdm sync\
-              """}
-mypy = {shell = "printf 'Running type checker... ' && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml && printf '\t✅\n'"}
-test = {shell = "printf 'Running tests... ' && .venv/bin/pytest tests/ --quiet --no-summary --show-capture=log -p no:logging -p no:warnings > /dev/null && printf '\t✅\n'"}
-tox = {cmd = ".venv/bin/tox"}
+# run app
+cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
 
 
 ####################################################################################################
@@ -135,7 +157,6 @@ show_error_codes = true
 strict = true
 warn_redundant_casts = true
 warn_unused_ignores = false
-# only in src folder
 files = ["src/**/*.py"]
 exclude = ["tests/**/*.py", "docs/**/*.py"]
 
@@ -145,11 +166,13 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [tool.coverage.run]
+source = ["src/python_template_repo"]
 branch = true
+parallel = true
+plugins = ["covdefaults"]
 omit = [
-  "*/__main__.py",
-  "*/tests/*",
-  "*/docs/*",
+  "tests/*",
+  "docs/*",
   "*/.venv/*",
 ]
 
@@ -157,16 +180,16 @@ omit = [
 exclude_lines = [
   "pragma: no cover",
   "if __name__ == .__main__.:",
+  "def __repr__",
+  "raise NotImplementedError",
+
 ]
 fail_under = 99
-html.show_contexts = true
-html.skip_covered = false
-paths.source = [
-  "src",
+omit = [
+  "tests/*",
+  "docs/*",
+  "*/.venv/*",
 ]
-report.omit = []
-run.parallel = true
-run.plugins = ["covdefaults"]
 show_missing = true
 skip_covered = false
 sort = "Cover"
@@ -245,3 +268,5 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
+# cov = ["src/python_template_repo"]
+# addopts = "--cov=python_template_repo --cov-report html"

@@ -29,7 +29,17 @@ repos:
       - id: mypy
         additional_dependencies: [types-all, pydantic]
         args: [--config-file=./pyproject.toml]
-        # exclude: "tests/,docs/"
+        files: ^src/
+        entry: mypy src/
+        pass_filenames: false
+  # - id: pytest-cov-src-packages
+  #   name: pytest-cov-src-packages
+  #   # language: system
+  #   entry: pdm run test
+  #   types: [python]
+  #   stages: [commit]
+  #   pass_filenames: false
+  #   always_run: true
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:
