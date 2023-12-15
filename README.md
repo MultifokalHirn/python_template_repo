@@ -43,6 +43,12 @@ This is my personal template repository for python projects containing everythin
 ## Table of Contents
  -->
 
+## Demo
+>
+[![asciicast](./docs/img/demo.svg)](https://asciinema.org/a/jJnVjjAALevmZBbgnWYGknz9b?autoplay=1&preload=1&loop=1)
+<!-- omit in toc
+TODO: embed as html to specify font family
+ -->
 ### Quickstart
 
 ``` bash
