@@ -22,7 +22,6 @@ dev:  ## install all dependencies in lock file
 update: ## update lock file if needed
 	pdm self update
 	pdm run update-all
-	pdm run lock
 .PHONY: update
 
 lint: ## Run linter on python files

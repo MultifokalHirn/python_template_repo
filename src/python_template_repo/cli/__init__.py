@@ -1,7 +1,7 @@
-__title__ = "cli"
-__description__ = """
-This is the cli module of the python_template_repo package.
-"""
+# __title__ = "cli"
+# __description__ = """
+# This is the cli module of the python_template_repo package.
+# """
 
 
 # def main() -> int:

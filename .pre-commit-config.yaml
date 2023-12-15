@@ -23,15 +23,15 @@ repos:
     hooks:
       - id: ruff
         args: [--config=./pyproject.toml]
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
-    hooks:
-      - id: mypy
-        additional_dependencies: [types-all, pydantic]
-        args: [--config-file=./pyproject.toml]
-        files: ^src/
-        entry: mypy src/
-        pass_filenames: false
+  # - repo: https://github.com/pre-commit/mirrors-mypy # TODO: run mypy as pdm would - currently this is not working
+  #   rev: v1.7.1
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: [types-all, pydantic]
+  #       args: [--config-file=./pyproject.toml]
+  #       files: ^src/
+  #       entry: mypy src/
+  #       pass_filenames: false
   # - id: pytest-cov-src-packages
   #   name: pytest-cov-src-packages
   #   # language: system

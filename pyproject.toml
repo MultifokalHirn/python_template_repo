@@ -126,9 +126,9 @@ mypy = {shell = """ \
                 """}
 test = {shell = """ \
                   printf 'Running tests...' \
-                  && .venv/bin/coverage run -m pytest tests/ --quiet --show-capture=log -p no:logging -p no:warnings \
-                  && coverage-badge -o docs/img/coverage.svg -f \
+                  && .venv/bin/coverage run -m pytest tests/ --show-capture=log -p no:logging -p no:warnings \
                   && .venv/bin/coverage report \
+                  && .venv/bin/coverage-badge -o docs/img/coverage.svg -f \
                 """}
 ci = {shell = """ \
                 pdm run format \
@@ -168,7 +168,7 @@ warn_required_dynamic_aliases = true
 [tool.coverage.run]
 source = ["src/python_template_repo"]
 branch = true
-parallel = true
+# parallel = true
 plugins = ["covdefaults"]
 omit = [
   "tests/*",
