@@ -112,15 +112,15 @@ update-all = {shell = """ \
 format = {shell = """ \
                     printf 'Formatting...' \
                     && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ docs/ \
-                    && printf '\t✅\n' \
+                    && printf '\t\t✅\n' \
                   """}
 lint = {shell = """ \
-                  printf 'Running Linter...' \
+                  printf 'Linting...' \
                   && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ docs/ \
-                  && printf '\t✅\n' \
+                  && printf '\t\t✅\n' \
                 """}
 mypy = {shell = """ \
-                  printf 'Running type checker...' \
+                  printf 'Type-checking...' \
                   && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml \
                   && printf '\t✅\n' \
                 """}
@@ -132,14 +132,14 @@ test = {shell = """ \
                 """}
 ci = {shell = """ \
                 pdm run format \
-                && pdm run lint \
-                && pdm run mypy \
-                && pdm run test \
+                ; pdm run lint \
+                ; pdm run mypy \
+                ; pdm run test \
+                ; pdm run docs \
               """}
 docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
 # run app
-cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
-
+cli = {cmd = ".venv/bin/python -m python_template_repo.cli"} # example
 
 ####################################################################################################
 # --------------------------------------------  TOOLS  ------------------------------------------- #
