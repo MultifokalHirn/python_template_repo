@@ -10,7 +10,7 @@ markdown-it-py==3.0.0
 mdurl==0.1.2
 pyboxen==1.2.0
 pydantic==2.5.2
-pydantic-core==2.14.5
+pydantic-core==2.14.6
 pygments==2.17.2
 rich==13.7.0
 ruamel-yaml==0.18.5
