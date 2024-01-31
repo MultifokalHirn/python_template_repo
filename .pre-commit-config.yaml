@@ -19,9 +19,11 @@ repos:
       # - id: check-json
       - id: detect-private-key
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.8
+    rev: v0.1.15
     hooks:
       - id: ruff
+        args: [--config=./pyproject.toml]
+      - id: ruff-format
         args: [--config=./pyproject.toml]
   # - repo: https://github.com/pre-commit/mirrors-mypy # TODO: run mypy as pdm would - currently this is not working
   #   rev: v1.7.1
@@ -46,6 +48,8 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+        language: python
+        types: [python]
   # - repo: https://github.com/guilatrova/tryceratops
   #   rev: v2.3.2
   #   hooks:
@@ -78,11 +82,11 @@ repos:
   #     - id: docker-compose-check
   #       files: docker-compose.*.y[a]{0,1}ml$
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.15
+    rev: v0.16
     hooks:
       - id: validate-pyproject
   - repo: https://github.com/pdm-project/pdm
-    rev: 2.11.1
+    rev: 2.12.2
     hooks:
       - id: pdm-lock-check
       - id: pdm-export
@@ -90,7 +94,7 @@ repos:
         args: ["-o", "requirements.txt", "--without-hashes", "--prod"]
         files: ^pdm.lock$
   - repo: https://github.com/pdm-project/pdm
-    rev: 2.11.1
+    rev: 2.12.2
     hooks:
       - id: pdm-export
         args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":dev"]

@@ -12,4 +12,3 @@ __title__: str = metadata.metadata(distribution_name=__package__)["name"]
 __description__: str = metadata.metadata(distribution_name=__package__)["summary"]
 __author__: str = "Lennard Wolf"  # pragma: no cover
 __license__: str = metadata.metadata(distribution_name=__package__)["license"]  # pragma: no cover
-# __version__: str = metadata.metadata(__package__)["version"] # TODO

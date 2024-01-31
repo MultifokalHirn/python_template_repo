@@ -4,7 +4,7 @@
 
 [project]
 name = "python_template_repo"
-version = "1.0.0"
+version = "0.0.0"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
 description = """ \
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
@@ -96,7 +96,10 @@ lock = {shell = """ \
                 """}
 update-all = {shell = """ \
                         printf 'Updating all dependencies...' \
+                        pdm lock -G :all \
                         && pdm update -G :all \
+                        && pdm export -o requirements.txt --without-hashes --prod \
+                        && pdm export -o requirements-dev.txt --without-hashes -dG all-dev \
                         && printf '\t✅\n' \
                       """}
 # CI: format, lint, mypy, test
@@ -186,7 +189,7 @@ skip_covered = false
 sort = "Cover"
 
 [tool.commitizen]
-version = "1.0.0"
+version = "0.0.0"
 version_files = [
   "src/python_template_repo/__version__.py",
   "pyproject.toml:version",
