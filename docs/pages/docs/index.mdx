@@ -1,3 +1,31 @@
+---
+title: Documentation
+description: This is the documentation for python_template_repo.
+layout: docs
+showLogo: true
+showOutline: true
+showSidebar: true
+authors:
+  - "[Lennard Wolf](https://github.com/MultifokalHirn)"
+---
+
+
 # Getting Started
 
-## Overview
+## Quick Start
+
+:::code-group
+
+```bash [unix]
+git clone https://github.com/MultifokalHirn/python_template_repo.git
+cd python_template_repo/
+
+make bootstrap     # sets up virtual environment and installs pdm
+make dev           # sets up dev environment and installs dependencies
+make ci            # runs formatter, linter, typechecker, and tests
+```
+
+```bash [windows]
+telnet towel.blinkenlights.nl
+```
+:::

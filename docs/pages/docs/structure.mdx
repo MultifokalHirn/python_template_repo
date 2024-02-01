@@ -1,0 +1,25 @@
+---
+title: Project Structure
+showOutline: true
+showSidebar: true
+authors:
+  - "[Lennard Wolf](https://github.com/MultifokalHirn)"
+---
+
+
+# Project Structure [Overview of the base repository structure]
+
+## Overview
+
+``` txt []
+/python_template_repo   # The project's root directory.
+├── docs/               # The root directory of the vocs documentation. // [!code hl] // [!code focus]
+│   ├── pages/          # Directory for your documentation pages (routes). // [!code hl] // [!code focus]
+│   │   └── index.mdx    // [!code focus]
+│   └── public/         # Directory for static assets. // [!code hl] // [!code focus]
+│       └── favicon.ico // [!code hl] // [!code focus]
+├── node_modules/
+├── src/                # root of the source code. // [!code hl] // [!code focus]
+├── package.json        # Documentation package.json file. // [!code hl] // [!code focus]
+└── vocs.config.ts      # Documentation (Vocs) configuration file. // [!code hl] // [!code focus]
+```
