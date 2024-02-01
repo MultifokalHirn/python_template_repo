@@ -163,3 +163,4 @@ cython_debug/
 #.idea/
 .pdm-python
 node_modules
+!docs/dist
