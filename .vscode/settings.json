@@ -41,5 +41,9 @@
     "python.analysis.typeCheckingMode": "basic",
     "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
     "editor.cursorStyle": "block",
-    "python.analysis.autoImportCompletions": true
+    "python.analysis.autoImportCompletions": true,
+    "cSpell.words": [
+        "Lennard",
+        "vocs"
+    ]
 }

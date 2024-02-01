@@ -1,0 +1,31 @@
+---
+title: python_template_repo
+layout: landing
+showLogo: true
+---
+
+import { Footer } from '../components/Footer'
+
+import { HomePage } from'vocs/components'
+
+<HomePage.Root>
+  <HomePage.Logo />
+  <HomePage.Tagline>Another project by MultifokalHirn.</HomePage.Tagline>
+  {/* <HomePage.InstallPackage name="vocs" type="init" /> */}
+  <HomePage.Description>This is the description.</HomePage.Description>
+    ```bash [Terminal]
+        npm install
+        npm run docs:dev # this will run a development server for the docs
+        npm run docs:build # this will build the docs
+    ```
+  <HomePage.Buttons>
+    <HomePage.Button href="/docs" variant="accent">Get started</HomePage.Button>
+    <HomePage.Button href="https://github.com/MultifokalHirn/python_template_project">GitHub</HomePage.Button>
+  </HomePage.Buttons>
+</HomePage.Root>
+
+
+
+
+
+<Footer />
