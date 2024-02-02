@@ -1,0 +1,38 @@
+---
+title: python_template_repo
+description: Landing page of python_template_repo homepage.
+layout: landing
+showLogo: true
+authors:
+  - "[Lennard Wolf](https://github.com/MultifokalHirn)"
+showOutline: 2
+showSidebar: true
+---
+
+import { Footer } from '../components/Footer'
+import { Demo } from '../components/Demo'
+
+import { HomePage } from'vocs/components'
+
+
+<HomePage.Root>
+  <HomePage.Logo />
+  <HomePage.Tagline>Another project by MultifokalHirn.</HomePage.Tagline>
+  {/* <HomePage.InstallPackage name="vocs" type="init" /> */}
+  {/* <img src="/img/demo.svg" /> */}
+  {/* [![asciicast](/img/demo.svg)](https://asciinema.org/a/jJnVjjAALevmZBbgnWYGknz9b?autoplay=1&preload=1&loop=1) */}
+
+  <HomePage.Description>Lorem Ipsum.</HomePage.Description>
+  {/* ```bash [Terminal]
+      npm install
+      npm run docs:dev
+      npm run docs:build
+  ``` */}
+  <HomePage.Buttons>
+    <HomePage.Button href="/docs" variant="accent">Get started</HomePage.Button>
+    <HomePage.Button href="https://github.com/MultifokalHirn/python_template_project">GitHub</HomePage.Button>
+  </HomePage.Buttons>
+</HomePage.Root>
+
+{/* <Demo /> */}
+<Footer />

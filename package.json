@@ -1,0 +1,16 @@
+{
+    "name": "python_template_repo",
+    "type": "module",
+    "scripts": {
+        "docs:dev": "node_modules/.bin/vocs dev",
+        "docs:build": "node_modules/.bin/vocs build --outDir ../_site",
+        "docs:preview": "node_modules/.bin/vocs preview"
+    },
+    "devDependencies": {
+        "vocs": "^1.0.0-alpha.30",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tsx": "^4.6.1",
+        "typescript": "^5.2.2"
+    }
+}

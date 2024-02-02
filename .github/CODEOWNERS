@@ -1,0 +1,8 @@
+# For more information about the CODEOWNERS file, see:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Owners of * in the repo & Default PR reviewers for the repository
+* @MultifokalHirn
+
+# Example for a specific directory
+# /docs/* @some_user

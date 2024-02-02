@@ -1,5 +1,5 @@
 [![Tests](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml/badge.svg?branch=main)](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml)
-![Coverage](./docs/img/coverage.svg)
+![Coverage](./docs/public/img/coverage.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/python_template_repo)
 ![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/python_template_repo)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/python_template_repo)
@@ -45,7 +45,7 @@ This is my personal template repository for python projects containing everythin
 
 ## Demo
 >
-[![asciicast](./docs/img/demo.svg)](https://asciinema.org/a/jJnVjjAALevmZBbgnWYGknz9b?autoplay=1&preload=1&loop=1)
+[![asciicast](./docs/public/img/demo.svg)](https://asciinema.org/a/jJnVjjAALevmZBbgnWYGknz9b?autoplay=1&preload=1&loop=1)
 <!-- omit in toc
 TODO: embed as html to specify font family
  -->
