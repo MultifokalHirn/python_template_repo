@@ -96,27 +96,27 @@ lock = {shell = """ \
                 """}
 update-all = {shell = """ \
                         printf 'Updating all dependencies...' \
-                        pdm lock -G :all \
+                        && pdm lock -G :all \
                         && pdm update -G :all \
                         && pdm export -o requirements.txt --without-hashes --prod \
                         && pdm export -o requirements-dev.txt --without-hashes -dG all-dev \
-                        && printf '\t✅\n' \
+                        && printf '\t✅\n' || printf '\t❌\n' \
                       """}
 # CI: format, lint, mypy, test
 format = {shell = """ \
                     printf 'Formatting...' \
-                    && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ docs/ \
-                    && printf '\t\t✅\n' \
+                    && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ \
+                    && printf '\t\t✅\n' || printf '\t\t❌\n' \
                   """}
 lint = {shell = """ \
                   printf 'Linting...' \
-                  && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ docs/ \
-                  && printf '\t\t✅\n' \
+                  && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ \
+                  && printf '\t\t✅\n' || printf '\t\t❌\n' \
                 """}
 mypy = {shell = """ \
                   printf 'Type-checking...' \
                   && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml \
-                  && printf '\t✅\n' \
+                  && printf '\t✅\n' || printf '\t❌\n' \
                 """}
 test = {shell = """ \
                   printf 'Running tests...' \
@@ -125,15 +125,16 @@ test = {shell = """ \
                   && .venv/bin/coverage-badge -o docs/img/coverage.svg -f \
                 """}
 ci = {shell = """ \
-                pdm run format \
-                ; pdm run lint \
-                ; pdm run mypy \
-                ; pdm run test \
-                ; pdm run docs \
+                pdm run format; \
+                pdm run lint; \
+                pdm run mypy; \
+                pdm run test; \
+                pdm run docs \
               """}
-docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
-# run app
-# cli = {cmd = ".venv/bin/python -m python_template_repo.cli"} # example
+docs = {shell = """ \
+                  printf 'Building documentation...';
+                  make build-docs && printf '\t✅\n' || printf '\t❌\n' \
+                """}
 
 ####################################################################################################
 # --------------------------------------------  TOOLS  ------------------------------------------- #

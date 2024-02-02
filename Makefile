@@ -28,6 +28,7 @@ bootstrap-dev:  ## set up a fresh dev environment
 	# setting up a fresh dev environment...
 	$(MAKE) bootstrap
 	$(MAKE) dev
+	$(MAKE) setup-docs
 	$(MAKE) setup-pre-commit
 .PHONY: bootstrap-dev
 
@@ -36,6 +37,16 @@ setup-pre-commit: in-venv ## install pre-commit hooks
 	$(VENV)/pre-commit autoupdate
 	$(VENV)/pre-commit install && $(VENV)/pre-commit install --hook-type commit-msg
 .PHONY: setup-pre-commit
+
+setup-docs: ## install docs dependencies
+	# installing docs dependencies...
+	@npm install
+.PHONY: setup-docs
+
+build-docs: setup-docs ## build docs
+	# building docs...
+	@npm run docs:build
+.PHONY: build-docs
 
 update: ## update lock file if needed
 	$(VENV)/pdm self update

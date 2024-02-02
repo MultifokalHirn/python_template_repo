@@ -2,9 +2,9 @@
     "name": "python_template_repo",
     "type": "module",
     "scripts": {
-        "docs:dev": "vocs dev",
-        "docs:build": "vocs build",
-        "docs:preview": "vocs preview"
+        "docs:dev": "node_modules/.bin/vocs dev",
+        "docs:build": "node_modules/.bin/vocs build --outDir ../_site",
+        "docs:preview": "node_modules/.bin/vocs preview"
     },
     "devDependencies": {
         "vocs": "^1.0.0-alpha.30",

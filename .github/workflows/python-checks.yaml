@@ -54,12 +54,9 @@ jobs:
           restore-keys: |
             venv-${{ runner.os }}-${{ matrix.python-version }}-
         id: cache
-      - name: Setup virtual environment
+      - name: Setup dev environment
         if: steps.cache.outputs.cache-hit != 'true'
-        run: make bootstrap
-
-      - name: Install prod and dev dependencies
-        run: make prod dev
+        run: make bootstrap-dev
 
       - name: Run tests
         run: make test
@@ -69,12 +66,3 @@ jobs:
 
       - name: Lint
         run: make lint
-
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade tox .
-      # - name: Test with tox
-      #   run: |
-      #     tox --version
-      #     pyversion="${{ matrix.python-version }}"
-      #     tox -e py${pyversion/./}
