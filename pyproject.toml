@@ -122,7 +122,7 @@ test = {shell = """ \
                   printf 'Running tests...' \
                   && .venv/bin/coverage run -m pytest tests/ --show-capture=log -p no:logging -p no:warnings \
                   && .venv/bin/coverage report \
-                  && .venv/bin/coverage-badge -o docs/img/coverage.svg -f \
+                  && .venv/bin/coverage-badge -o docs/public/img/coverage.svg -f \
                 """}
 ci = {shell = """ \
                 pdm run format; \
@@ -216,6 +216,7 @@ exclude = [
   "_build",
   "buck-out",
   "build",
+  "node_modules",
   "dist",
 ]
 indent-width = 4
