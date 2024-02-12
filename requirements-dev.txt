@@ -5,7 +5,7 @@ annotated-types==0.6.0
 asttokens==2.4.1
 devtools==0.12.2
 executing==2.0.1
-pydantic==2.6.0
+pydantic==2.6.1
 pydantic-core==2.16.1
 pygments==2.17.2
 ruamel-yaml==0.18.5
