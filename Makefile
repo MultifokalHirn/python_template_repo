@@ -10,18 +10,18 @@ help: ## Show available commands and their descriptions
 
 .PHONY: in-venv
 in-venv: ## make sure we're in the venv
-	$(VENV)/pdm config python.use_venv true
+	uv venv
 .PHONY: bootstrap
 bootstrap: python-version clean-venv venv ## Delete existing & create new venv
 
 prod: in-venv  ## install package dependencies
-	# installing prod dependencies...
-	$(VENV)/pdm install --prod
+	# installing prod dependencies only...
+	uv pip install .
 .PHONY: prod
 
 dev: in-venv prod  ## install (all) dev dependencies
 	# installing dev dependencies...
-	$(VENV)/pdm install -dG :all
+	uv pip install --all-extras -e . 
 .PHONY: dev
 
 bootstrap-dev:  ## set up a fresh dev environment
@@ -49,33 +49,29 @@ build-docs: setup-docs ## build docs
 .PHONY: build-docs
 
 update: ## update lock file if needed
-	$(VENV)/pdm self update
+	uv pip install --upgrade uv
 	$(VENV)/pdm run update-all
 	$(VENV)/pre-commit autoupdate
 .PHONY: update
 
-lint: ## Run linter on python files
-lint:
+lint: in-venv dev ## Run linter on python files
 	$(VENV)/pdm run lint
 .PHONY: lint
 
-format: ## Run formatter on python files
+format: in-venv dev ## Run formatter on python files
 format:
 	$(VENV)/pdm run format
 .PHONY: format
 
 mypy: ## Run mypy on python files
-mypy:
 	$(VENV)/pdm run mypy
 .PHONY: mypy
 
-test: ## Run unit tests
-test:
+test:  in-venv dev ## Run unit tests
 	$(VENV)/pdm run test
 .PHONY: test
 
-ci: ## Run formatter, linter, mypy, and unit tests
-ci:
+ci:  in-venv dev ## Run formatter, linter, mypy, and unit tests
 	$(VENV)/pdm run ci
 .PHONY: ci
 

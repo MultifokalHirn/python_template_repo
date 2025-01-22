@@ -96,6 +96,7 @@ repos:
   - repo: https://github.com/pdm-project/pdm
     rev: 2.12.2
     hooks:
+      # pdm export -o requirements-dev.txt --without-hashes -G :dev
       - id: pdm-export
         args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":dev"]
         files: ^pdm.lock$

@@ -29,6 +29,7 @@ classifiers = [
 ]
 dependencies = [
     # "importlib-metadata",
+    "pdm",
     "pydantic",
     "ruamel-yaml",
     "termcolor",
@@ -38,9 +39,6 @@ dependencies = [
 ]
 requires-python = ">=3.11"
 [project.optional-dependencies]
-all-dev = [
-  "pdm[qa,docs,lint,refactoring,test]",
-]
 qa = [
   "pre-commit",
   "commitizen",
@@ -67,6 +65,7 @@ test = [
   "pytest",
   "types-mock",
 ]
+
 [project.urls]
 Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
 Homepage = "https://github.com/MultifokalHirn/python_template_repo"
@@ -90,7 +89,7 @@ requires = ["pdm-backend"]
 _.env_file = ".env"
 # Dependency management
 lock = {shell = """ \
-                  pdm lock -G :all \
+                  uv lock \
                   && source .venv/bin/activate \
                   && pdm sync \
                 """}
@@ -105,7 +104,7 @@ update-all = {shell = """ \
 # CI: format, lint, mypy, test
 format = {shell = """ \
                     printf 'Formatting...' \
-                    && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ \
+                    && .venv/bin/ruff --config=./pyproject.toml fix src/ tests/ \
                     && printf '\t\t✅\n' || printf '\t\t❌\n' \
                   """}
 lint = {shell = """ \
@@ -115,7 +114,7 @@ lint = {shell = """ \
                 """}
 mypy = {shell = """ \
                   printf 'Type-checking...' \
-                  && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml \
+                  && .venv/bin/mypy -v --no-error-summary --install-types --config-file=./pyproject.toml \
                   && printf '\t✅\n' || printf '\t❌\n' \
                 """}
 test = {shell = """ \
