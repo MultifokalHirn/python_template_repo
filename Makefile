@@ -35,44 +35,44 @@ bootstrap-dev:  ## set up a fresh dev environment
 setup-pre-commit: in-venv ## install pre-commit hooks
 	# installing pre-commit hooks...
 	pre-commit autoupdate
-	pre-commit install && $(VENV)/pre-commit install --hook-type commit-msg
+	pre-commit install && pre-commit install --hook-type commit-msg
 .PHONY: setup-pre-commit
 
-setup-docs: ## install docs dependencies
+setup-docs: in-venv ## install docs dependencies
 	# installing docs dependencies...
 	@npm install
 .PHONY: setup-docs
 
-build-docs: setup-docs ## build docs
+build-docs: in-venv ## build docs
 	# building docs...
 	@npm run docs:build
 .PHONY: build-docs
 
-update: ## update lock file if needed
+update: in-venv ## update lock file if needed
 	uv pip install --upgrade uv
-	$(VENV)/pdm run update-all
-	$(VENV)/pre-commit autoupdate
+	pdm run update-all
+	pre-commit autoupdate
 .PHONY: update
 
-lint: in-venv dev ## Run linter on python files
-	$(VENV)/pdm run lint
+lint: in-venv ## Run linter on python files
+	pdm run lint
 .PHONY: lint
 
-format: in-venv dev ## Run formatter on python files
+format: in-venv ## Run formatter on python files
 format:
-	$(VENV)/pdm run format
+	pdm run format
 .PHONY: format
 
-mypy: ## Run mypy on python files
-	$(VENV)/pdm run mypy
+mypy: in-venv ## Run mypy on python files
+	pdm run mypy
 .PHONY: mypy
 
 test:  in-venv dev ## Run unit tests
-	$(VENV)/pdm run test
+	pdm run test
 .PHONY: test
 
 ci:  in-venv dev ## Run formatter, linter, mypy, and unit tests
-	$(VENV)/pdm run ci
+	pdm run ci
 .PHONY: ci
 
 .DEFAULT_GOAL := help

@@ -104,24 +104,24 @@ update-all = {shell = """ \
 # CI: format, lint, mypy, test
 format = {shell = """ \
                     printf 'Formatting...' \
-                    && .venv/bin/ruff --config=./pyproject.toml fix src/ tests/ \
+                    && uvx ruff --config=./pyproject.toml fix src/ tests/ \
                     && printf '\t\t✅\n' || printf '\t\t❌\n' \
                   """}
 lint = {shell = """ \
                   printf 'Linting...' \
-                  && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ \
+                  && uvx ruff check --config=./pyproject.toml src/ tests/ \
                   && printf '\t\t✅\n' || printf '\t\t❌\n' \
                 """}
 mypy = {shell = """ \
                   printf 'Type-checking...' \
-                  && .venv/bin/mypy -v --no-error-summary --install-types --config-file=./pyproject.toml \
+                  && uvx mypy -v --no-error-summary --install-types --config-file=./pyproject.toml \
                   && printf '\t✅\n' || printf '\t❌\n' \
                 """}
 test = {shell = """ \
                   printf 'Running tests...' \
-                  && .venv/bin/coverage run -m pytest tests/ --show-capture=log -p no:logging -p no:warnings \
-                  && .venv/bin/coverage report \
-                  && .venv/bin/coverage-badge -o docs/public/img/coverage.svg -f \
+                  && uvx coverage run -m pytest tests/ --show-capture=log -p no:logging -p no:warnings \
+                  && uvx coverage report \
+                  && uvx coverage-badge -o docs/public/img/coverage.svg -f \
                 """}
 ci = {shell = """ \
                 pdm run format; \
@@ -242,7 +242,7 @@ skip-magic-trailing-comma = false
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = [
   "S101", # asserts allowed in tests...
   "FBT", # don"t care about booleans as positional arguments in tests
