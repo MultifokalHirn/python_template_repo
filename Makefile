@@ -16,12 +16,12 @@ bootstrap: python-version clean-venv venv ## Delete existing & create new venv
 
 prod: in-venv  ## install package dependencies
 	# installing prod dependencies only...
-	uv pip install .
+	@uv pip install -r pyproject.toml
 .PHONY: prod
 
-dev: in-venv prod  ## install (all) dev dependencies
+dev: prod  ## install (all) dev dependencies
 	# installing dev dependencies...
-	uv pip install --all-extras -e . 
+	@uv pip install -r pyproject.toml --all-extras -e .
 .PHONY: dev
 
 bootstrap-dev:  ## set up a fresh dev environment
@@ -34,8 +34,8 @@ bootstrap-dev:  ## set up a fresh dev environment
 
 setup-pre-commit: in-venv ## install pre-commit hooks
 	# installing pre-commit hooks...
-	$(VENV)/pre-commit autoupdate
-	$(VENV)/pre-commit install && $(VENV)/pre-commit install --hook-type commit-msg
+	pre-commit autoupdate
+	pre-commit install && $(VENV)/pre-commit install --hook-type commit-msg
 .PHONY: setup-pre-commit
 
 setup-docs: ## install docs dependencies

@@ -1,12 +1,12 @@
 # please, regularly run `pre-commit autoupdate`
 repos:
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
+    rev: v4.1.0
     hooks:
       - id: commitizen
         stages: [commit-msg]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
       - id: check-toml
       - id: check-yaml
@@ -19,7 +19,7 @@ repos:
       # - id: check-json
       - id: detect-private-key
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.15
+    rev: v0.9.2
     hooks:
       - id: ruff
         args: [--config=./pyproject.toml]
@@ -43,7 +43,7 @@ repos:
   #   pass_filenames: false
   #   always_run: true
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.4.0
     hooks:
       - id: codespell
         additional_dependencies:
@@ -55,7 +55,7 @@ repos:
   #   hooks:
   #     - id: tryceratops
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.19.1
     hooks:
       - id: pyupgrade
         args: [--py311-plus]
@@ -68,7 +68,7 @@ repos:
   #   hooks:
   #     - id: refurb
   - repo: https://codeberg.org/frnmst/md-toc
-    rev: "8.2.2"
+    rev: "9.0.0"
     hooks:
       - id: md-toc
         args: [-p, "cmark", "-l6"] # CLI options
@@ -82,21 +82,20 @@ repos:
   #     - id: docker-compose-check
   #       files: docker-compose.*.y[a]{0,1}ml$
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.16
+    rev: v0.23
     hooks:
       - id: validate-pyproject
-  - repo: https://github.com/pdm-project/pdm
-    rev: 2.12.2
-    hooks:
-      - id: pdm-lock-check
-      - id: pdm-export
-        # pdm export -o requirements.txt --without-hashes --prod
-        args: ["-o", "requirements.txt", "--without-hashes", "--prod"]
-        files: ^pdm.lock$
-  - repo: https://github.com/pdm-project/pdm
-    rev: 2.12.2
-    hooks:
-      # pdm export -o requirements-dev.txt --without-hashes -G :dev
-      - id: pdm-export
-        args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":dev"]
-        files: ^pdm.lock$
+  # - repo: https://github.com/pdm-project/pdm
+  #   rev: 2.22.2
+  #   hooks:
+  #     - id: pdm-export
+  #       # pdm export -o requirements.txt --without-hashes --prod
+  #       args: ["uv", "pip", "compile", "pyproject.toml", "--all-extras", "--upgrade", "--output-file", "requirements-dev.txt"]
+  #       files: ^pdm.lock$
+  # - repo: https://github.com/pdm-project/pdm
+  #   rev: 2.22.2
+  #   hooks:
+  #     # pdm export -o requirements-dev.txt --without-hashes -G :dev
+  #     - id: pdm-export
+  #       args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":dev"]
+  #       files: ^pdm.lock$

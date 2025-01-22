@@ -95,7 +95,7 @@ lock = {shell = """ \
                 """}
 update-all = {shell = """ \
                         printf 'Updating all dependencies...' \
-                        && pdm lock -G :all \
+                        && uv lock \
                         && pdm update -G :all \
                         && pdm export -o requirements.txt --without-hashes --prod \
                         && pdm export -o requirements-dev.txt --without-hashes -dG all-dev \
