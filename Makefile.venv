@@ -225,7 +225,7 @@ endif
 $(VENV):
 	$(PY) -m pip install --upgrade uv pipx
 	$(PY) -m pipx install pdm uv
-	$(PY) -m uv venv
+	$(PY) -m uv venv --allow-existing
 	uv pip install --upgrade setuptools wheel pdm
 
 $(VENV)/$(MARKER): $(VENVDEPENDS) | $(VENV)

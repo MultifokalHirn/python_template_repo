@@ -10,7 +10,7 @@ help: ## Show available commands and their descriptions
 
 .PHONY: in-venv
 in-venv: ## make sure we're in the venv
-	uv venv
+	uv venv --allow-existing
 .PHONY: bootstrap
 bootstrap: python-version clean-venv venv ## Delete existing & create new venv
 
@@ -34,8 +34,8 @@ bootstrap-dev:  ## set up a fresh dev environment
 
 setup-pre-commit: in-venv ## install pre-commit hooks
 	# installing pre-commit hooks...
-	pre-commit autoupdate
-	pre-commit install && pre-commit install --hook-type commit-msg
+	@uvx pre-commit autoupdate
+	@uvx pre-commit install && @uvx pre-commit install --hook-type commit-msg
 .PHONY: setup-pre-commit
 
 setup-docs: in-venv ## install docs dependencies
@@ -49,9 +49,9 @@ build-docs: in-venv ## build docs
 .PHONY: build-docs
 
 update: in-venv ## update lock file if needed
-	uv pip install --upgrade uv
-	pdm run update-all
-	pre-commit autoupdate
+	@uv pip compile pyproject.toml --all-extras --upgrade --output-file requirements-dev.txt
+	@uv sync
+	@uvx pre-commit autoupdate
 .PHONY: update
 
 lint: in-venv ## Run linter on python files
