@@ -16,12 +16,12 @@ bootstrap: python-version clean-venv venv ## Delete existing & create new venv
 
 prod: in-venv  ## install package dependencies
 	# installing prod dependencies only...
-	@uv pip install -r pyproject.toml
+	uv pip install -r pyproject.toml
 .PHONY: prod
 
 dev: prod  ## install (all) dev dependencies
 	# installing dev dependencies...
-	@uv pip install -r pyproject.toml --all-extras -e .
+	uv pip install -r pyproject.toml --all-extras -e .
 .PHONY: dev
 
 bootstrap-dev:  ## set up a fresh dev environment
@@ -34,8 +34,8 @@ bootstrap-dev:  ## set up a fresh dev environment
 
 setup-pre-commit: in-venv ## install pre-commit hooks
 	# installing pre-commit hooks...
-	@uvx pre-commit autoupdate
-	@uvx pre-commit install && @uvx pre-commit install --hook-type commit-msg
+	uvx pre-commit autoupdate
+	uvx pre-commit install && uvx pre-commit install --hook-type commit-msg
 .PHONY: setup-pre-commit
 
 setup-docs: in-venv ## install docs dependencies
@@ -49,9 +49,9 @@ build-docs: in-venv ## build docs
 .PHONY: build-docs
 
 update: in-venv ## update lock file if needed
-	@uv pip compile pyproject.toml --all-extras --upgrade --output-file requirements-dev.txt
-	@uv sync
-	@uvx pre-commit autoupdate
+	uv pip compile pyproject.toml --all-extras --upgrade --output-file requirements-dev.txt
+	uv sync
+	uvx pre-commit autoupdate
 .PHONY: update
 
 lint: in-venv ## Run linter on python files
